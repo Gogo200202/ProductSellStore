@@ -18,8 +18,32 @@ namespace ProductSellStore.Data
         {
         }
 
+        public List<Category> SeededCategories()
+        {
+            List<Category> categories = new List<Category>();
+
+            Category ElectricalAppliances = new Category();
+            ElectricalAppliances.Id = 1;
+            ElectricalAppliances.Name = "Electrical appliances";
+
+            Category OfficeSupplies = new Category();
+            OfficeSupplies.Id= 2;
+            OfficeSupplies.Name = "Office supplies";
+
+            Category KitchenSupply = new Category();
+            KitchenSupply.Id = 3;
+            KitchenSupply.Name = "Kitchen supply";
+
+            categories.Add(ElectricalAppliances);
+            categories.Add(OfficeSupplies);
+            categories.Add(KitchenSupply);
+
+            return categories;
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            var SeedCategores = SeededCategories();
+            builder.Entity<Category>().HasData(SeedCategores);
             builder.Entity<ItemUser>(option =>
             {
                 option.HasKey(keys => new
