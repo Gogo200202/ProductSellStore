@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{DD0ADF0D-AFB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{9AFB4ED0-29FC-4B60-BBA4-F8CA7187E51E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{80FA67CD-09AE-4497-A5E2-75213A248592}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSellStore.Data.Models", "Models\ProductSellStore.Data.Models.csproj", "{80FA67CD-09AE-4497-A5E2-75213A248592}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

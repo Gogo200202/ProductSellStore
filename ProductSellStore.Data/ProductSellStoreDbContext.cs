@@ -40,10 +40,29 @@ namespace ProductSellStore.Data
 
             return categories;
         }
+
+        public List<Item> SeededItems()
+        {
+            List<Item> items = new List<Item>();
+            Item item1= new Item();
+            item1.Id = 1;
+            item1.Name = "Lenovo Thinkpad";
+            item1.Description = "good pc";
+            item1.Rating = 5;
+            item1.PhotoUrl = "https://pcbuild.bg/assets/products/000/000/247/000000247696--laptop-lenovo-thinkpad-14-g1-20u2s7cy00.jpg";
+            item1.CategoreId = 1;
+            items.Add(item1);
+            return items;
+
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             var SeedCategores = SeededCategories();
             builder.Entity<Category>().HasData(SeedCategores);
+
+            var seedItems = SeededItems();
+            builder.Entity<Item>().HasData(seedItems);
+
             builder.Entity<ItemUser>(option =>
             {
                 option.HasKey(keys => new

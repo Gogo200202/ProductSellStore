@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductSellStore.Data;
 
@@ -11,9 +12,10 @@ using ProductSellStore.Data;
 namespace ProductSellStore.Data.Migrations
 {
     [DbContext(typeof(ProductSellStoreDbContext))]
-    partial class ProductSellStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230702153859_seedItem")]
+    partial class seedItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,7 +241,7 @@ namespace ProductSellStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -290,18 +292,7 @@ namespace ProductSellStore.Data.Migrations
 
                     b.HasIndex("CategoreId");
 
-                    b.ToTable("Items", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoreId = 1,
-                            Description = "good pc",
-                            Name = "Lenovo Thinkpad",
-                            PhotoUrl = "https://pcbuild.bg/assets/products/000/000/247/000000247696--laptop-lenovo-thinkpad-14-g1-20u2s7cy00.jpg",
-                            Rating = 5
-                        });
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("Models.ItemUser", b =>
@@ -316,7 +307,7 @@ namespace ProductSellStore.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ItemsUsers", (string)null);
+                    b.ToTable("ItemsUsers");
                 });
 
             modelBuilder.Entity("Models.Orders", b =>
@@ -340,7 +331,7 @@ namespace ProductSellStore.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Models.Worker", b =>
@@ -357,7 +348,7 @@ namespace ProductSellStore.Data.Migrations
 
                     b.HasIndex("UserIdId");
 
-                    b.ToTable("Workers", (string)null);
+                    b.ToTable("Workers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

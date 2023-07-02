@@ -19,10 +19,10 @@ namespace Models
         [Required]
 
         public string Description { get; set; } = null!;
-
+        [Range(0,5)]
         public int Rating { get; set; }
 
-        public byte[] Photo { get; set; }
+        public string PhotoUrl { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoreId { get; set; }
