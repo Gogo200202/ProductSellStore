@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProductSellStore.Data;
+using ProductSellStore.Interface;
+using ProductSellStore.Services;
 
 namespace ProductSellStore
 {
@@ -27,6 +29,10 @@ namespace ProductSellStore
                 .AddEntityFrameworkStores<ProductSellStoreDbContext>();
 
             builder.Services.AddControllersWithViews();
+
+
+            builder.Services.AddScoped<IProductSellStore, Services.ProductSellStore>();
+
 
             var app = builder.Build();
 

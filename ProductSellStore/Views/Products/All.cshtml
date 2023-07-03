@@ -1,0 +1,21 @@
+﻿@model List<ProductSellStore.ViewModel.AllItems>
+
+<div>
+    @{
+        foreach (var curentModel in Model)
+        {
+            <div class="container">
+
+                <div class="col"></div>
+                <div class="hidden">@curentModel.id</div>
+                <img src="@curentModel.PhotoUrl" alt="Image not found" style="width:128px;height:128px;">
+                <div>@curentModel.Name</div>
+                
+                
+                
+
+            </div>
+            
+        }
+    }
+</div>

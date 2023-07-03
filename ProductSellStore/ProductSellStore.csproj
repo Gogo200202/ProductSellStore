@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProductSellStore.Data\ProductSellStore.Data.csproj" />
+    <ProjectReference Include="..\ProductSellStore.Interface\ProductSellStore.Interface.csproj" />
+    <ProjectReference Include="..\ProductSellStore.Services\ProductSellStore.Services.csproj" />
   </ItemGroup>
 
 </Project>
