@@ -20,6 +20,24 @@ namespace ProductSellStore.Services
             _context = context;
         }
 
+        public async Task AddItem(AddItemViewModel item)
+        {
+            Item itemForDb = new Item();
+            itemForDb.Name = item.Name;
+            itemForDb.Description = item.Description;
+            itemForDb.Price = item.Price;
+            itemForDb.Rating = item.Rating;
+            itemForDb.PhotoUrl = item.PhotoUrl;
+            itemForDb.CategoreId= item.CategoreId;
+
+
+           await _context.Items.AddAsync(itemForDb);
+
+            await _context.SaveChangesAsync();
+
+        }
+
+       
         public async Task<List<AllItems>> AllItems()
         {
             var allItems = await _context.Items.Select(x => new AllItems()
@@ -28,10 +46,21 @@ namespace ProductSellStore.Services
                 Name = x.Name,
                 Raiting = x.Rating,
                 PhotoUrl = x.PhotoUrl,
+                Price = x.Price,
 
             }).ToListAsync();
 
             return allItems;
+        }
+
+        public AddItemViewModel GetItemToAdd()
+        {
+            AddItemViewModel itemToAdd = new AddItemViewModel();
+            var categoreas = _context.Categories.ToList();
+            itemToAdd.Categorys = categoreas;
+            return itemToAdd;
+
+
         }
     }
 }

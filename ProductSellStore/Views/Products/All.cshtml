@@ -1,21 +1,27 @@
 ﻿@model List<ProductSellStore.ViewModel.AllItems>
 
-<div>
-    @{
-        foreach (var curentModel in Model)
-        {
-            <div class="container">
-
-                <div class="col"></div>
-                <div class="hidden">@curentModel.id</div>
-                <img src="@curentModel.PhotoUrl" alt="Image not found" style="width:128px;height:128px;">
-                <div>@curentModel.Name</div>
-                
-                
-                
-
+@{
+    foreach (var curentModel in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img class="card-img-top" src="@curentModel.PhotoUrl" alt="House Image">
+                <div class="card-body text-center">
+                    <h4>@curentModel.Name</h4>
+                    
+                    <h6>
+                        Price Per Month:
+                        <b>@String.Format("{0:f2}", curentModel.Price) BGN</b>
+                    </h6>
+                   
+                    <br />
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@curentModel.id"
+                       class="btn btn-success">Details</a>
+                    
+ 
+                    
+                </div>
             </div>
-            
-        }
+        </div>
     }
-</div>
+}

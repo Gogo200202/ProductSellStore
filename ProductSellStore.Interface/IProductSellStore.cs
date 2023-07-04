@@ -13,5 +13,8 @@ namespace ProductSellStore.Interface
     public interface IProductSellStore
     {
         public  Task<List<AllItems>> AllItems();
+        public  Task AddItem(AddItemViewModel item);
+
+        public AddItemViewModel GetItemToAdd();
     }
 }

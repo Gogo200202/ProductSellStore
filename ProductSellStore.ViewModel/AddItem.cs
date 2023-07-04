@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Models;
 
-namespace Models
+namespace ProductSellStore.ViewModel
 {
-    public class Item
+    public class AddItemViewModel
     {
-        [Key]
-        public int Id { get; set; }
+       
 
         [Required]
         [StringLength(100)]
@@ -19,19 +19,21 @@ namespace Models
         [Required]
 
         public string Description { get; set; } = null!;
-        [Range(0,5)]
+        [Range(0, 5)]
         public int Rating { get; set; }
 
         [Required]
         public decimal Price { get; set; }
 
+
+
+        [Required]
         public string PhotoUrl { get; set; }
 
-        [ForeignKey(nameof(Category))]
-        public int CategoreId { get; set; }
         [Required]
-        public Category Category { get; set; } = null!;
+        public int CategoreId { get; set; }
 
-        //implement feedback if you can 
+        public ICollection<Category> Categorys { get; set; } = null!;
+
     }
 }

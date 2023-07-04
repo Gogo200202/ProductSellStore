@@ -12,6 +12,7 @@ namespace ProductSellStore.ViewModel
 
         public string Name { get; set; }
         public int Raiting { get; set; }
+        public decimal Price { get; set; }
 
         public string PhotoUrl { get; set; }
     }

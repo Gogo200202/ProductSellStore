@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Configuration;
 using ProductSellStore.Interface;
+using ProductSellStore.ViewModel;
 
 namespace ProductSellStore.Controllers
 {
@@ -15,6 +17,22 @@ namespace ProductSellStore.Controllers
 
             var Model = await _iProductSellStore.AllItems();
             return View(Model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+
+            AddItemViewModel additemModel = _iProductSellStore.GetItemToAdd();
+            return View(additemModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddItemViewModel ItemToBeAdded)
+        {
+
+          await  _iProductSellStore.AddItem(ItemToBeAdded);
+            
+          return RedirectToAction("All");
         }
 
     }
