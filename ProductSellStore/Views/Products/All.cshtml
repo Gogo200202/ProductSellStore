@@ -1,28 +1,45 @@
 ﻿@model List<ProductSellStore.ViewModel.AllItems>
-<div class="row">
-@{
-    foreach (var curentModel in Model)
-    {
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <img class="card-img-top" src="@curentModel.PhotoUrl" alt="House Image">
-                <div class="card-body text-center">
-                    <h4>@curentModel.Name</h4>
-                    
-                    <h6>
-                        Price:
-                        <b>@String.Format("{0:f2}", curentModel.Price) BGN</b>
-                    </h6>
-                   
-                    <br />
-                    <a asp-controller="Products" asp-action="Details" asp-route-id="@curentModel.id"
-                       class="btn btn-success">Details</a>
-                    
- 
-                    
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    @{
+        foreach (var curentModel in Model)
+        {
+
+
+            
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                            <img class="card-img-top" src="@curentModel.PhotoUrl" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                    <h5 class="fw-bolder">@curentModel.Name</h5>
+                                <!-- Product price-->
+                                @String.Format("{0:f2}", @curentModel.Price)
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                           
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="Details" asp-route-id="@curentModel.id">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            
+           
+
+
+
+        }
     }
-}
-</div>
+        </div>
+    </div>
+</section>
+
