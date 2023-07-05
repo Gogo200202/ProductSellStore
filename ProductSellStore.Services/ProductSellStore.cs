@@ -53,6 +53,26 @@ namespace ProductSellStore.Services
             return allItems;
         }
 
+        public async Task<DetailsViweModel> GetItemDetails(int id)
+        {
+            var resoltDetails =  await _context.Items.Include(x=>x.Category).FirstOrDefaultAsync(x=>x.Id==id);
+
+            DetailsViweModel details = new DetailsViweModel();
+
+            details.Id = resoltDetails.Id;
+            details.Name= resoltDetails.Name;
+            details.Description= resoltDetails.Description;
+            details.Rating = resoltDetails.Rating;
+            details.Price = resoltDetails.Price;
+            details.PhotoUrl = resoltDetails.PhotoUrl;
+            details.CategoreId= resoltDetails.CategoreId;
+            details.Category= resoltDetails.Category;
+
+
+
+            return details;
+        }
+
         public AddItemViewModel GetItemToAdd()
         {
             AddItemViewModel itemToAdd = new AddItemViewModel();

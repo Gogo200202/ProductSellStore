@@ -16,5 +16,8 @@ namespace ProductSellStore.Interface
         public  Task AddItem(AddItemViewModel item);
 
         public AddItemViewModel GetItemToAdd();
+
+   
+        public Task<DetailsViweModel> GetItemDetails(int id);
     }
 }

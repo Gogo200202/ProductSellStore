@@ -23,7 +23,7 @@ namespace ProductSellStore.Controllers
         {
 
             AddItemViewModel additemModel = _iProductSellStore.GetItemToAdd();
-            return View(additemModel);
+            return  View(additemModel);
         }
 
         [HttpPost]
@@ -33,6 +33,15 @@ namespace ProductSellStore.Controllers
           await  _iProductSellStore.AddItem(ItemToBeAdded);
             
           return RedirectToAction("All");
+        }
+
+
+        public async Task<IActionResult> Details(int id)
+        {
+            
+            var detailsItem= await _iProductSellStore.GetItemDetails(id);
+
+            return View(detailsItem);
         }
 
     }

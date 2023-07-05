@@ -1,5 +1,5 @@
 ﻿@model List<ProductSellStore.ViewModel.AllItems>
-
+<div class="row">
 @{
     foreach (var curentModel in Model)
     {
@@ -10,7 +10,7 @@
                     <h4>@curentModel.Name</h4>
                     
                     <h6>
-                        Price Per Month:
+                        Price:
                         <b>@String.Format("{0:f2}", curentModel.Price) BGN</b>
                     </h6>
                    
@@ -25,3 +25,4 @@
         </div>
     }
 }
+</div>
