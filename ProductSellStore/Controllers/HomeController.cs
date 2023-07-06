@@ -8,9 +8,9 @@ namespace ProductSellStore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IProductSellStore _iProductSellStore;
+        private readonly IProductSellStoreServices _iProductSellStore;
 
-        public HomeController(ILogger<HomeController> logger, IProductSellStore productSellStore)
+        public HomeController(ILogger<HomeController> logger, IProductSellStoreServices productSellStore)
         {
             _logger = logger;
             _iProductSellStore= productSellStore;

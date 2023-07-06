@@ -10,12 +10,12 @@ namespace ProductSellStore.Interface
 {
 
     
-    public interface IProductSellStore
+    public interface IProductSellStoreServices
     {
         public  Task<List<AllItems>> AllItems();
         public  Task AddItem(AddItemViewModel item);
 
-        public AddItemViewModel GetItemToAdd();
+        public Task<AddItemViewModel> GetItemToAdd();
 
    
         public Task<DetailsViweModel> GetItemDetails(int id);

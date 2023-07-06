@@ -7,8 +7,8 @@ namespace ProductSellStore.Controllers
 {
     public class Products : Controller
     {
-        private readonly IProductSellStore _iProductSellStore;
-        public Products(IProductSellStore productSellStore)
+        private readonly IProductSellStoreServices _iProductSellStore;
+        public Products(IProductSellStoreServices productSellStore)
         {
             _iProductSellStore = productSellStore;
         }
@@ -22,7 +22,7 @@ namespace ProductSellStore.Controllers
         public async Task<IActionResult> Add()
         {
 
-            AddItemViewModel additemModel = _iProductSellStore.GetItemToAdd();
+            AddItemViewModel additemModel = await _iProductSellStore.GetItemToAdd();
             return  View(additemModel);
         }
 

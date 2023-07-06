@@ -31,7 +31,8 @@ namespace ProductSellStore
             builder.Services.AddControllersWithViews();
 
 
-            builder.Services.AddScoped<IProductSellStore, Services.ProductSellStore>();
+            builder.Services.AddScoped<IProductSellStoreServices, Services.ProductSellStoreServices>();
+            builder.Services.AddScoped<IOrderServes, Services.OrderServes>();
 
 
             var app = builder.Build();

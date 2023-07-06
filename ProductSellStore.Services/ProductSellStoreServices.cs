@@ -12,10 +12,10 @@ using ProductSellStore.ViewModel;
 
 namespace ProductSellStore.Services
 {
-    public class ProductSellStore : IProductSellStore
+    public class ProductSellStoreServices : IProductSellStoreServices
     {
         private readonly ProductSellStoreDbContext _context;
-        public ProductSellStore(ProductSellStoreDbContext context)
+        public ProductSellStoreServices(ProductSellStoreDbContext context)
         {
             _context = context;
         }
@@ -73,10 +73,10 @@ namespace ProductSellStore.Services
             return details;
         }
 
-        public AddItemViewModel GetItemToAdd()
+        public async Task<AddItemViewModel> GetItemToAdd()
         {
             AddItemViewModel itemToAdd = new AddItemViewModel();
-            var categoreas = _context.Categories.ToList();
+            var categoreas =await _context.Categories.ToListAsync();
             itemToAdd.Categorys = categoreas;
             return itemToAdd;
 
