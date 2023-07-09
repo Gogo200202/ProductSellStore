@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using ProductSellStore.Data.Models;
 
 namespace ProductSellStore.Data
 {
    
-    public class ProductSellStoreDbContext : IdentityDbContext
+    public class ProductSellStoreDbContext : IdentityDbContext<ApplicationUser>
     {
-       
-        public DbSet<Worker> Workers { get; set; }
+        public  DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+        public  DbSet<Worker> Workers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<ItemUser> ItemsUsers { get; set; }

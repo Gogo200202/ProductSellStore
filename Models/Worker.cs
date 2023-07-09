@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using ProductSellStore.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +18,6 @@ namespace Models
         [Key]
         public Guid Id { get; set; }
 
-        public IdentityUser UserId { get; set; }
+        public ApplicationUser UserId { get; set; }
     }
 }

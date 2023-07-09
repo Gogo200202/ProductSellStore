@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProductSellStore.Data;
+using ProductSellStore.Data.Models;
 using ProductSellStore.Interface;
 using ProductSellStore.Services;
 
@@ -20,12 +21,8 @@ namespace ProductSellStore
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-                {
-
-                    options.SignIn.RequireConfirmedAccount = false;
-
-                })
+            builder.Services.AddDefaultIdentity<ApplicationUser>(
+                    options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ProductSellStoreDbContext>();
 
             builder.Services.AddControllersWithViews();
