@@ -1,0 +1,52 @@
+﻿@model List<ProductSellStore.ViewModel.AllOrederesViweModel>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="rounded">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <div class="toggle-btn">
+                                    <div class="inner-circle"></div>
+                                </div>
+                            </th>
+                            <th>Order #</th>
+                            <th>Company name</th>
+                            <th>status</th>
+                            <th>Total</th>
+                            <th>Created</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    @{
+                        foreach (var curentModel in Model)
+                        {
+                            <tbody class="table-body">
+                            <tr class="cell-1">
+                                <td class="text-center">
+                                    <div class="toggle-btn">
+                                        <div class="inner-circle"></div>
+                                    </div>
+                                </td>
+                               
+                                <td>@curentModel.Id</td>
+                                <td>@curentModel.User.UserName</td>
+                                <td>Not implementeed</td>
+                                <td>@curentModel.Item.Price</td>
+                                <td>Not implementeed</td>
+                                
+                                
+                            </tr>
+                          
+                            </tbody>
+                        }
+                    }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

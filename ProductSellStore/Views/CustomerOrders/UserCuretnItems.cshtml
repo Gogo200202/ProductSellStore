@@ -30,8 +30,8 @@
                                         </div>
 
                                     <div class="col-md-3">
-                                           
-                                        <a class="btn btn-outline-danger" asp-controller="Orders" asp-action="RemoverCuretnUserItem" asp-route-id="@curentModels.Item.Id">Delete</a>
+
+                                        <a class="btn btn-outline-danger" asp-controller="CustomerOrders" asp-action="RemoverCuretnUserItem" asp-route-id="@curentModels.Item.Id">Delete</a>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+                            <a class="btn btn-warning btn-block btn-lg" asp-controller="CustomerOrders" asp-action="MakeUserOred">Make order</a>
                         </div>
                     </div>
                 </div>

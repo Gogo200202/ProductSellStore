@@ -5,12 +5,12 @@ using System.Security.Claims;
 
 namespace ProductSellStore.Controllers
 {
-    public class Orders : Controller
+    public class CustomerOrders : Controller
     {
         private readonly IOrderServes _iOrderServes;
        
 
-        public Orders(IOrderServes iOrderServes)
+        public CustomerOrders(IOrderServes iOrderServes)
         {
             _iOrderServes=iOrderServes;
          
@@ -40,6 +40,16 @@ namespace ProductSellStore.Controllers
              await _iOrderServes.RemoverUserItem(userId, id);
 
             return RedirectToAction("UserCuretnItems");
+        }
+
+        public async Task<IActionResult> MakeUserOred()
+        {
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await _iOrderServes.UserMakesOrder(userId);
+
+            return RedirectToAction("All","Products");
         }
     }
 }
