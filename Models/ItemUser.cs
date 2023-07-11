@@ -22,5 +22,7 @@ namespace Models
 
         public ApplicationUser User { get; set; }
 
+        public int Amount { get; set; }
+
     }
 }

@@ -42,7 +42,8 @@ namespace ProductSellStore.Services
                 ItemId = x.ItemId,
                 Item = x.Item,
                 UserId = x.UserId,
-                User = x.User
+                User = x.User,
+                CreatedOn = x.OrderOn
             }).ToListAsync();
 
             return resoltOfAllOreders;

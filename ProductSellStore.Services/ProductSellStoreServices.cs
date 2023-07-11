@@ -38,19 +38,37 @@ namespace ProductSellStore.Services
         }
 
        
-        public async Task<List<AllItems>> AllItems()
+        public async Task<PageInfo> AllItems(string SearchString,int numberPage)
         {
-            var allItems = await _context.Items.Select(x => new AllItems()
+            int pageSize = 2;
+            PageInfo pageInfo = new PageInfo();
+
+            pageInfo.curentPageNumber = numberPage;
+
+            pageInfo.WordsToSearch = SearchString;
+
+            var allItems = _context.Items.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(SearchString))
             {
-                id = x.Id,
-                Name = x.Name,
-                Raiting = x.Rating,
-                PhotoUrl = x.PhotoUrl,
-                Price = x.Price,
+                allItems= allItems.Where(b => b.Name.Contains(SearchString));
+            }
 
-            }).ToListAsync();
+            allItems = allItems.Skip((numberPage) * pageSize).Take(pageSize);
 
-            return allItems;
+            var resolt= await allItems.Select(x => new AllItems()
+                {
+                    id = x.Id,
+                    Name = x.Name,
+                    Raiting = x.Rating,
+                    PhotoUrl = x.PhotoUrl,
+                    Price = x.Price,
+
+                }).ToListAsync();
+
+
+            pageInfo.allItems= resolt;
+            return pageInfo;
         }
 
         public async Task<DetailsViweModel> GetItemDetails(int id)

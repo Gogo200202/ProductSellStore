@@ -12,11 +12,17 @@ namespace ProductSellStore.Controllers
         {
             _iProductSellStore = productSellStore;
         }
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string SearchString,int numberPage)
         {
+            Console.WriteLine("+++++++++++++++++++");
+            Console.WriteLine("word "+ SearchString);
+            Console.WriteLine("Numer "+ numberPage);
 
-            var Model = await _iProductSellStore.AllItems();
+            Console.WriteLine("+++++++++++++++++++");
+            var Model = await _iProductSellStore.AllItems(SearchString, numberPage);
+            
             return View(Model);
+
         }
         [HttpGet]
         public async Task<IActionResult> Add()

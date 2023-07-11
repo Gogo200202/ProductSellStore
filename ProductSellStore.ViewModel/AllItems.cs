@@ -15,5 +15,7 @@ namespace ProductSellStore.ViewModel
         public decimal Price { get; set; }
 
         public string PhotoUrl { get; set; }
+
+        
     }
 }

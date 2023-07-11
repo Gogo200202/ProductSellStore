@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using ProductSellStore.Data.Models;
 
+
 namespace Models
 {
-    public class Orders
-    {
+    public class Orders {
+
+        public Orders()
+        {
+            OrderOn = DateTime.Now;
+        }
         [Key]
         public int Id { get; set; }
 
@@ -26,7 +31,12 @@ namespace Models
 
         public ApplicationUser User { get; set; }
 
+        public enum Status
+        {
+            Inaction, complete
+        }
 
+        public DateTime OrderOn { get; set; }
 
 
     }

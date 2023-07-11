@@ -22,5 +22,7 @@ namespace ProductSellStore.ViewModel
         public string UserId { get; set; }
 
         public IdentityUser User { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

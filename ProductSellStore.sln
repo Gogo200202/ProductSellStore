@@ -17,15 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSellStore.Data.Model
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D6DAFA24-5674-49A1-B424-BCF4A3C65BC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductSellStore.Services", "ProductSellStore.Services\ProductSellStore.Services.csproj", "{5088A77F-58FF-43B8-BA5E-D44805A56169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSellStore.Services", "ProductSellStore.Services\ProductSellStore.Services.csproj", "{5088A77F-58FF-43B8-BA5E-D44805A56169}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{53922D4A-6A23-4C71-8568-0D04D77379DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductSellStore.Interface", "ProductSellStore.Interface\ProductSellStore.Interface.csproj", "{BE178987-4786-47F2-98C0-499585477DD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSellStore.Interface", "ProductSellStore.Interface\ProductSellStore.Interface.csproj", "{BE178987-4786-47F2-98C0-499585477DD8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModel", "ViewModel", "{880810F1-1CFD-4AC3-9264-A38AA35047A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductSellStore.ViewModel", "ProductSellStore.ViewModel\ProductSellStore.ViewModel.csproj", "{A7833FE0-B4A4-4269-B55F-2689A7C1E71B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSellStore.ViewModel", "ProductSellStore.ViewModel\ProductSellStore.ViewModel.csproj", "{A7833FE0-B4A4-4269-B55F-2689A7C1E71B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

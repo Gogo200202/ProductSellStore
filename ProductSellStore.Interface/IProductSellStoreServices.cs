@@ -12,7 +12,7 @@ namespace ProductSellStore.Interface
     
     public interface IProductSellStoreServices
     {
-        public  Task<List<AllItems>> AllItems();
+        public Task<PageInfo> AllItems(string SerchString, int numberPage);
         public  Task AddItem(AddItemViewModel item);
 
         public Task<AddItemViewModel> GetItemToAdd();
