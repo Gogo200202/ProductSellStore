@@ -71,6 +71,14 @@ namespace ProductSellStore.Services
             return pageInfo;
         }
 
+        public async Task Delete(int id)
+        {
+            var itemToDelete =await _context.Items.FirstOrDefaultAsync(x=>x.Id==id);
+
+            _context.Items.Remove(itemToDelete);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<DetailsViweModel> GetItemDetails(int id)
         {
             var resoltDetails =  await _context.Items.Include(x=>x.Category).FirstOrDefaultAsync(x=>x.Id==id);

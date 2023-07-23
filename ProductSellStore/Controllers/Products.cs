@@ -14,11 +14,7 @@ namespace ProductSellStore.Controllers
         }
         public async Task<IActionResult> All(string SearchString,int numberPage)
         {
-            Console.WriteLine("+++++++++++++++++++");
-            Console.WriteLine("word "+ SearchString);
-            Console.WriteLine("Numer "+ numberPage);
-
-            Console.WriteLine("+++++++++++++++++++");
+            
             var Model = await _iProductSellStore.AllItems(SearchString, numberPage);
             
             return View(Model);
@@ -47,7 +43,15 @@ namespace ProductSellStore.Controllers
             
             var detailsItem= await _iProductSellStore.GetItemDetails(id);
 
-            return View(detailsItem);
+            return View(detailsItem) ;
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            await _iProductSellStore.Delete(id);
+
+            return RedirectToAction("All");
         }
 
     }

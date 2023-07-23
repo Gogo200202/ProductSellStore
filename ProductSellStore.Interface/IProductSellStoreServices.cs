@@ -14,6 +14,7 @@ namespace ProductSellStore.Interface
     {
         public Task<PageInfo> AllItems(string SerchString, int numberPage);
         public  Task AddItem(AddItemViewModel item);
+        public  Task Delete(int id);
 
         public Task<AddItemViewModel> GetItemToAdd();
 
