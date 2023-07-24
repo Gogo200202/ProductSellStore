@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProductSellStore.ViewModel;
+using System.Net;
+using System.Diagnostics.Metrics;
 
 namespace ProductSellStore.Services
 {
@@ -38,13 +40,24 @@ namespace ProductSellStore.Services
 
             var resoltOfAllOreders = await _context.Orders.Select(x => new AllOrederesViweModel()
             {
-                Id=x.Id,
-                ItemId = x.ItemId,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Email = x.Email,
+                Address = x.Address,
+                Country = x.Country,
+                State = x.State,
+                Zip = x.Zip,
+                Description = x.Description,
                 Item = x.Item,
-                UserId = x.UserId,
                 User = x.User,
+                Id =x.Id,
+                ItemId = x.ItemId,
+             
+                UserId = x.UserId,
+             
                 CreatedOn = x.OrderOn,
                 AllStatus = x.OrderStatus
+
             }).ToListAsync();
 
             return resoltOfAllOreders;
@@ -71,7 +84,7 @@ namespace ProductSellStore.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UserMakesOrder(string userId)
+        public async Task UserMakesOrder(string userId, MakeOrder makeOrder)
         {
             var resoltAllCirentUserOreders= await _context.ItemsUsers
                 .Include(x => x.Item)
@@ -79,6 +92,14 @@ namespace ProductSellStore.Services
                 .Where(x => x.UserId == userId)
                 .Select(x=>new Orders()
                 {
+                    FirstName= makeOrder.FirstName,
+                    LastName= makeOrder.LastName,
+                    Email= makeOrder.Email,
+                    Address= makeOrder.Address,
+                    Country= makeOrder.Country,
+                    State= makeOrder.State,
+                    Zip= makeOrder.Zip,
+                    Description= makeOrder.Description,
                     ItemId =x.ItemId,
                     UserId =x.UserId,
                     Item = x.Item,
@@ -97,6 +118,8 @@ namespace ProductSellStore.Services
 
            await _context.Orders.AddRangeAsync(resoltAllCirentUserOreders);
             await _context.SaveChangesAsync();
+
+            
         }
     }
 }

@@ -1,23 +1,19 @@
-﻿using System;
+﻿using Models;
+using ProductSellStore.Data.Models.Enums;
+using ProductSellStore.Data.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using ProductSellStore.Data.Models;
-using ProductSellStore.Data.Models.Enums;
 
-
-namespace Models
+namespace ProductSellStore.ViewModel
 {
-    public class Orders {
-
-        public Orders()
-        {
-            OrderOn = DateTime.Now;
-        }
+    public class MakeOrder
+    {
+       
         [Key]
         public int Id { get; set; }
         [Required]
@@ -26,7 +22,7 @@ namespace Models
         [Required]
         public string LastName { get; set; }
 
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         [Required]
         public string Address { get; set; }
@@ -39,25 +35,21 @@ namespace Models
         [Required]
         public string Zip { get; set; }
 
-
-
-        public string? Description { get; set; }
-
         [ForeignKey(nameof(Item))]
         public int ItemId { get; set; }
+
+        public string Description { get; set; }
 
         public Item Item { get; set; }
 
         [ForeignKey(nameof(User))]
 
-        public string UserId  { get; set; }
+        public string UserId { get; set; }
 
         public ApplicationUser User { get; set; }
 
         public Status.OrderEnum OrderStatus { get; set; }
 
-        public DateTime OrderOn { get; set; }
-
-
+       
     }
 }

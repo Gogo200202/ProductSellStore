@@ -16,7 +16,7 @@ namespace ProductSellStore.Interface
 
         public Task<List<AllOrederesViweModel>> AllOreders ();
 
-        public Task UserMakesOrder(string userId);
+        public Task UserMakesOrder(string userId, MakeOrder makeOrder);
 
 
 

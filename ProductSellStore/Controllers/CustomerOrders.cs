@@ -42,14 +42,6 @@ namespace ProductSellStore.Controllers
             return RedirectToAction("UserCuretnItems");
         }
 
-        public async Task<IActionResult> MakeUserOred()
-        {
-
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            await _iOrderServes.UserMakesOrder(userId);
-
-            return RedirectToAction("All","Products");
-        }
+        
     }
 }
