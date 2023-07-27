@@ -55,13 +55,19 @@
 
       
 
-        <div class="mb-3">
-                <label asp-for="Email" >Email <span class="text-muted">(Optional)</span></label>
-                <input asp-for="Email " data-val="false" value="" type="text" class="form-control" id="email" placeholder="you@example.com">
+          <div class="mb-3">
+              <label asp-for="Email" >Email <span class="text-muted">(Optional)</span></label>
+              <input asp-for="Email " data-val="false" value="" type="text" class="form-control" id="email" placeholder="you@example.com">
           
-        </div>
+          </div>
+          
+          <div class="mb-3">
+                <label asp-for="PhoneNumber">Phone Number <span class="text-muted"></span></label>
+                <input asp-for="PhoneNumber " data-val="false" value="" type="text" class="form-control" id="phonenumber" placeholder="you@example.com" required>
+          
+          </div>
 
-        <div class="mb-3">
+          <div class="mb-3">
           <label asp-for="Address">Address</label>
             <input asp-for="Address" type="text" class="form-control" id="address" placeholder="1234 Main St" required>
                 <span asp-validation-for="Address" class="small text-danger"></span>

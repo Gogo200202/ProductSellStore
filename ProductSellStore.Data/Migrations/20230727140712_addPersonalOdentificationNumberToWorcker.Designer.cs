@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductSellStore.Data;
 
@@ -11,9 +12,10 @@ using ProductSellStore.Data;
 namespace ProductSellStore.Data.Migrations
 {
     [DbContext(typeof(ProductSellStoreDbContext))]
-    partial class ProductSellStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230727140712_addPersonalOdentificationNumberToWorcker")]
+    partial class addPersonalOdentificationNumberToWorcker
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

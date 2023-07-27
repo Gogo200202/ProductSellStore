@@ -31,7 +31,8 @@ namespace ProductSellStore
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddTransient<Services.UserServices>();
+            builder.Services.AddScoped<Services.UserServices>();
+            builder.Services.AddScoped<IUserServices,Services.UserServices>();
             builder.Services.AddScoped<IProductSellStoreServices, Services.ProductSellStoreServices>();
             builder.Services.AddScoped<IOrderServes, Services.OrderServes>();
            
@@ -69,6 +70,7 @@ namespace ProductSellStore
             app.UseAuthorization();
 
             app.SeedAdministrator("Admin@gmail.com");
+            app.MakeWorkerRole();
 
             app.MapControllerRoute(
                 name: "default",

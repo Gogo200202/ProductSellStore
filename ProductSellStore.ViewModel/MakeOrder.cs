@@ -23,6 +23,8 @@ namespace ProductSellStore.ViewModel
         public string LastName { get; set; }
 
         public string Email { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
 
         [Required]
         public string Address { get; set; }

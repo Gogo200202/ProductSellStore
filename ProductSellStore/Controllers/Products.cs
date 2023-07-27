@@ -22,7 +22,8 @@ namespace ProductSellStore.Controllers
             return View(Model);
 
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Worker")]
+       
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -30,7 +31,8 @@ namespace ProductSellStore.Controllers
             AddItemViewModel additemModel = await _iProductSellStore.GetItemToAdd();
             return  View(additemModel);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Worker")]
+
         [HttpPost]
         public async Task<IActionResult> Add(AddItemViewModel ItemToBeAdded)
         {

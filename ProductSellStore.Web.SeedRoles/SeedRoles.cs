@@ -41,5 +41,35 @@ namespace ProductSellStore.Web.SeedRoles
 
             return app;
         }
+
+        public static IApplicationBuilder MakeWorkerRole(this IApplicationBuilder app)
+        {
+            using IServiceScope scopedServices = app.ApplicationServices.CreateScope();
+
+            IServiceProvider serviceProvider = scopedServices.ServiceProvider;
+
+           
+            RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            const string WorkerRoleName = "Worker";
+            Task.Run(async () =>
+                {
+                    if (await roleManager.RoleExistsAsync(WorkerRoleName))
+                    {
+                        return;
+                    }
+
+                    IdentityRole role = new IdentityRole(WorkerRoleName);
+
+                    await roleManager.CreateAsync(role);
+
+                   
+                })
+                .GetAwaiter()
+                .GetResult();
+
+            return app;
+        }
+
+        
     }
 }

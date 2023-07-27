@@ -9,8 +9,10 @@
 @inject UserServices UserServices;
 
 
-
-
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var user = await UserServices.GetUserById(userId);
+}
 
 
 <!DOCTYPE html>
@@ -41,14 +43,20 @@
                         
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            var user = await UserServices.GetUserById(userId);
+                           
                             if (await UserManager.IsInRoleAsync(user, "Admin"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Add">Products Add</a>
                                 </li>
                             }
+                            if (await UserManager.IsInRoleAsync(user, "Worker"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Add">Products Add</a>
+                                </li>
+                            }
+                            
                         }
                         @if (SignInManager.IsSignedIn(User))
                         {
@@ -59,17 +67,32 @@
                        
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            var user = await UserServices.GetUserById(userId);
+                            
                             if (await UserManager.IsInRoleAsync(user, "Admin"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="AllOrders">All Orders</a>
                                 </li>
                             }
+                            if (await UserManager.IsInRoleAsync(user, "Worker"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="AllOrders">All Orders</a>
+                                </li>
+                            }
                         }
-                        
-                       
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                           
+                            if (await UserManager.IsInRoleAsync(user, "Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="SearchUsers">Search Users</a>
+                                </li>
+                            }
+                            
+                        }
+                      
                        
                     </ul>
                     <partial name="_LoginPartial" />

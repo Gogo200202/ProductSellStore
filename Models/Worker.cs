@@ -18,6 +18,9 @@ namespace Models
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
+        public string PersonalIdentificationNumber { get; set; }
+
         public ApplicationUser UserId { get; set; }
     }
 }
