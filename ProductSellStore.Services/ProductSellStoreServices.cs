@@ -40,7 +40,7 @@ namespace ProductSellStore.Services
        
         public async Task<PageInfo> AllItems(string SearchString,int numberPage)
         {
-            int pageSize = 2;
+            int pageSize = 3;
             PageInfo pageInfo = new PageInfo();
 
             pageInfo.curentPageNumber = numberPage;

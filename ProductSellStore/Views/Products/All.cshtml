@@ -1,6 +1,6 @@
 ﻿@model ProductSellStore.ViewModel.PageInfo
 
-    //make it work all pages
+    
 <form asp-controller="Products" asp-action="All" method="get">
     <p>
         Title: <input type="text" name="SearchString" />
@@ -11,7 +11,7 @@
 <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber-1)">Previos</a>
 
 
-<a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber+1)">Nexst</a>
+<a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber+1)">Next</a>
 
 
                
@@ -29,18 +29,18 @@
 
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <!-- Product image-->
+                          
                             <img class="card-img-top" src="@curentModel.PhotoUrl" alt="..."/>
-                            <!-- Product details-->
+                         
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <!-- Product name-->
+                                   
                                     <h5 class="fw-bolder">@curentModel.Name</h5>
-                                    <!-- Product price-->
+                                 
                                     @String.Format("{0:f2}", @curentModel.Price)
                                 </div>
                             </div>
-                            <!-- Product actions-->
+                         
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

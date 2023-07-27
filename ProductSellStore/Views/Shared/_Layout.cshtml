@@ -1,4 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using ProductSellStore.Data.Models
+@using ProductSellStore.Services
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using ProductSellStore.Interface
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject UserServices UserServices;
+
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,18 +38,38 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Add">Products Add</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CustomerOrders" asp-action="UserCuretnItems">My orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="AllOrders">All Orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Checkout" asp-action="Index"> Checkout</a>
-                        </li>
+                        
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                            var user = await UserServices.GetUserById(userId);
+                            if (await UserManager.IsInRoleAsync(user, "Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Add">Products Add</a>
+                                </li>
+                            }
+                        }
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CustomerOrders" asp-action="UserCuretnItems">My orders</a>
+                            </li>
+                        }
+                       
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                            var user = await UserServices.GetUserById(userId);
+                            if (await UserManager.IsInRoleAsync(user, "Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="AllOrders">All Orders</a>
+                                </li>
+                            }
+                        }
+                        
+                       
                        
                     </ul>
                     <partial name="_LoginPartial" />
@@ -48,21 +83,83 @@
             @RenderBody()
         </main>
     </div>
+    
 
-<footer class="border-top text-muted">
+    <footer class="border-top text-muted">
 
-        <div class="container-fluid">
-        <ul class="list-group list-group-flush" >
-            <li class="list-group-item" >
-                <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Us">About us</a>
-            </li>
-        </ul>
+
+    <div class="container-fluid text-center text-md-left">
+
+    
+        <div class="row">
+
+           
+            <div class="col-md-6 mt-md-0 mt-3">
+
+                <h5 class="text-uppercase">Footer Content</h5>
+                <p>Here you can use rows and columns to organize your footer content.</p>
+
+            </div>
+       
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+            
+            <div class="col-md-3 mb-md-0 mb-3">
+                
+
+                <h5 class="text-uppercase">About</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Us">About us</a>
+                    </li>
+                    <li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Policy">Policy</a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+        
+            <div class="col-md-3 mb-md-0 mb-3">
+
+              
+                    <h5 class="text-uppercase">Contacts and help</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                            <a href="#!">Contacts</a>
+                    </li>
+                    <li>
+                            <a href="#!">Help</a>
+                    </li>
+                    <li>
+                            <a href="#!">Delivery</a>
+                    </li>
+                    <li>
+                            <a href="#!">How to shop</a>
+                    </li>
+                </ul>
+
+            </div>
+           
+
+        </div>
+        
+
     </div>
+    
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:ProductSellStore
 
-        <div class="container-fluid">
-        &copy; 2023 - ProductSellStore
+
     </div>
+   
+
 </footer>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

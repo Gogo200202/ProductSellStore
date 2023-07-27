@@ -8,5 +8,10 @@ namespace ProductSellStore.Controllers
         {
             return View();
         }
+
+        public IActionResult Policy()
+        {
+            return View();
+        }
     }
 }

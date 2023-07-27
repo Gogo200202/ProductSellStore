@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NuGet.Configuration;
 using ProductSellStore.Interface;
 using ProductSellStore.ViewModel;
+using System.Data;
 
 namespace ProductSellStore.Controllers
 {
@@ -20,6 +22,7 @@ namespace ProductSellStore.Controllers
             return View(Model);
 
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -27,7 +30,7 @@ namespace ProductSellStore.Controllers
             AddItemViewModel additemModel = await _iProductSellStore.GetItemToAdd();
             return  View(additemModel);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Add(AddItemViewModel ItemToBeAdded)
         {

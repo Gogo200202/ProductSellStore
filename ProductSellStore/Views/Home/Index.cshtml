@@ -2,7 +2,77 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to my cool store</h1>
-    
+
+<div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://as1.ftcdn.net/v2/jpg/02/41/43/18/1000_F_241431868_8DFQpCcmpEPVG0UvopdztOAd4a6Rqsoo.jpg" class="rounded mx-auto d-block" alt="Photo 1">
+        </div>
+        <div class="carousel-item">
+            <img src="https://as2.ftcdn.net/v2/jpg/02/74/98/91/1000_F_274989153_XSiWoHsVOnlTs0Far2EYacdg8rE4kw27.jpg" class="rounded mx-auto d-block" alt="Photo 2">
+        </div>
+        <div class="carousel-item">
+            <img src="https://as1.ftcdn.net/v2/jpg/03/93/88/78/1000_F_393887833_JuP5DkgghppS6vSMA55vBzSH7m5NBbkL.jpg" class="rounded mx-auto d-block" alt="Photo 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
+
+<h1>Products</h1>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            @{
+                foreach (var curentModel in Model.allItems)
+                {
+
+
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+
+                            <img class="card-img-top" src="@curentModel.PhotoUrl" alt="..." />
+
+                            <div class="card-body p-4">
+                                <div class="text-center">
+
+                                    <h5 class="fw-bolder">@curentModel.Name</h5>
+
+                                    @String.Format("{0:f2}", @curentModel.Price)
+                                </div>
+                            </div>
+
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="Details" asp-route-id="@curentModel.id">Details</a>
+                                        <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="Delete" asp-route-id="@curentModel.id"> delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                }
+            }
+
+
+
+        </div>
+    </div>
+</section>
+

@@ -16,10 +16,10 @@ namespace ProductSellStore.Controllers
             _iProductSellStore= productSellStore;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            return View();
+            var Model = await _iProductSellStore.AllItems("", 0);
+            return View(Model);
         }
 
        

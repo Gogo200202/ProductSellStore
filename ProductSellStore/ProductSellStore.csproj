@@ -21,8 +21,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProductSellStore.Data\ProductSellStore.Data.csproj" />
+    <ProjectReference Include="..\ProductSellStore.Infrastructure.ModelBunders\ProductSellStore.Infrastructure.ModelBunders.csproj" />
     <ProjectReference Include="..\ProductSellStore.Interface\ProductSellStore.Interface.csproj" />
     <ProjectReference Include="..\ProductSellStore.Services\ProductSellStore.Services.csproj" />
+    <ProjectReference Include="..\ProductSellStore.Web.SeedRoles\ProductSellStore.Web.SeedRoles.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductSellStore.Data;
 
@@ -11,9 +12,10 @@ using ProductSellStore.Data;
 namespace ProductSellStore.Data.Migrations
 {
     [DbContext(typeof(ProductSellStoreDbContext))]
-    partial class ProductSellStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230726145456_addroles")]
+    partial class addroles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -408,18 +410,14 @@ namespace ProductSellStore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "09014c3e-72a5-47dd-8422-225dda59ea2e",
+                            Id = "b3ba4b5e-e44a-4f65-9a37-fe9694ff72bd",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fb644a29-1b3d-4535-b43b-fa6060ff19f5",
+                            ConcurrencyStamp = "367628c0-e67d-497e-838f-2155500841a6",
                             Email = "Admin@gmail.com",
-                            EmailConfirmed = true,
+                            EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@gmail.com",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHTqoFOHzTrR8rOxZpVB0l1vRRWYZKyG9NxpFIUGYoLbpa43G6vcb7JaIA4rm1z2NQ==",
-                            PhoneNumber = "+111111111111",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "993b55fc-7fea-43fd-b25f-833b0637c2a9",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "05db85a7-8bef-46e8-93fc-ad9d74199f3f",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

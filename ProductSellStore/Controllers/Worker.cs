@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProductSellStore.Interface;
+using System.Data;
 
 namespace ProductSellStore.Controllers
 {
@@ -10,6 +12,7 @@ namespace ProductSellStore.Controllers
         {
             this._IOrderServes=IOrderServes;
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AllOrders()
         {
             var resolt = await _IOrderServes.AllOreders();

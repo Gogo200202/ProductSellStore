@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductSellStore.Data;
 using ProductSellStore.Data.Models;
+using ProductSellStore.Infrastructure.ModelBunders;
 using ProductSellStore.Interface;
 using ProductSellStore.Services;
+using ProductSellStore.Web.SeedRoles;
 
 namespace ProductSellStore
 {
@@ -23,13 +26,24 @@ namespace ProductSellStore
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(
                     options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ProductSellStoreDbContext>();
 
             builder.Services.AddControllersWithViews();
 
-
+            builder.Services.AddTransient<Services.UserServices>();
             builder.Services.AddScoped<IProductSellStoreServices, Services.ProductSellStoreServices>();
             builder.Services.AddScoped<IOrderServes, Services.OrderServes>();
+           
+
+            builder.Services
+                .AddControllersWithViews()
+                .AddMvcOptions(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                });
 
 
             var app = builder.Build();
@@ -53,6 +67,8 @@ namespace ProductSellStore
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedAdministrator("Admin@gmail.com");
 
             app.MapControllerRoute(
                 name: "default",

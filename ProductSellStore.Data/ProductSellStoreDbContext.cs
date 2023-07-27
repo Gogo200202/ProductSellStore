@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using ProductSellStore.Data.Models;
+using System.Collections.Generic;
 
 namespace ProductSellStore.Data
 {
@@ -58,6 +59,25 @@ namespace ProductSellStore.Data
             return items;
 
         }
+
+        public ApplicationUser SeedAdmin()
+        {
+            var hasher = new PasswordHasher<IdentityUser>();
+            var user = new ApplicationUser
+            {
+             
+                Email = "Admin@gmail.com",
+                NormalizedEmail = "ADMIN@gmail.com",
+                UserName = "Admin",
+                NormalizedUserName = "ADMIN",
+                PhoneNumber = "+111111111111",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                PasswordHash = hasher.HashPassword(null, "123456@")
+            };
+            return user;
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             var SeedCategores = SeededCategories();
@@ -66,6 +86,9 @@ namespace ProductSellStore.Data
             var seedItems = SeededItems();
             builder.Entity<Item>().HasData(seedItems);
 
+            var seedAdmin=SeedAdmin();
+            builder.Entity<ApplicationUser>().HasData(seedAdmin);
+
             builder.Entity<ItemUser>(option =>
             {
                 option.HasKey(keys => new
@@ -73,6 +96,8 @@ namespace ProductSellStore.Data
                     keys.ItemId, keys.UserId
                 });
             });
+
+
             base.OnModelCreating(builder);
         }
     }
