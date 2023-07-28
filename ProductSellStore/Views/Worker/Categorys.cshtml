@@ -1,0 +1,26 @@
+﻿@model List<Models.Category>
+<h1>All Categorys</h1>
+@{
+    foreach (var curentModel in @Model)
+    {
+        <div>@curentModel.Name</div>
+    }
+}
+
+<form asp-controller="Worker" asp-action="AddCategorys" method="post">
+    <h1>Category to add</h1>
+    <p>
+        <input type="text" name="CategoryToAdd" />
+        <input type="submit" value="Filter" />
+    </p>
+    
+</form>
+
+<form asp-controller="Worker" asp-action="RemoveCategorys" method="post">
+    <h1>Category to Remove</h1>
+    <p>
+        <input type="text" name="CategoryToRemove" />
+        <input type="submit" value="Filter" />
+    </p>
+
+</form>

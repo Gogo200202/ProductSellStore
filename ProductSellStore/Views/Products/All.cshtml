@@ -1,4 +1,18 @@
-﻿@model ProductSellStore.ViewModel.PageInfo
+﻿@using ProductSellStore.Services
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using ProductSellStore.Data.Models
+@model ProductSellStore.ViewModel.PageInfo
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject UserServices UserServices;
+
+
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var user = await UserServices.GetUserById(userId);
+}
 
     
 <form asp-controller="Products" asp-action="All" method="get">
@@ -11,58 +25,11 @@
 <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber-1)">Previos</a>
 
 
+
+
 <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber+1)">Next</a>
 
 
                
-                
-
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-            @{
-                foreach (var curentModel in Model.allItems)
-                {
-
-
-
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                          
-                            <img class="card-img-top" src="@curentModel.PhotoUrl" alt="..."/>
-                         
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                   
-                                    <h5 class="fw-bolder">@curentModel.Name</h5>
-                                 
-                                    @String.Format("{0:f2}", @curentModel.Price)
-                                </div>
-                            </div>
-                         
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="Details" asp-route-id="@curentModel.id">Details</a>
-                                        <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="Delete" asp-route-id="@curentModel.id"> delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-
-
-
-                }
-            }
-            
-           
-
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_RenderItemsPartial");       
 

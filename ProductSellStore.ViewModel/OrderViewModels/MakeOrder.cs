@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductSellStore.ViewModel
+namespace ProductSellStore.ViewModel.OrderViewModels
 {
     public class MakeOrder
     {
-       
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -36,22 +36,19 @@ namespace ProductSellStore.ViewModel
 
         [Required]
         public string Zip { get; set; }
-
-        [ForeignKey(nameof(Item))]
-        public int ItemId { get; set; }
+        [Required]
+        public int Amount { get; set; }
 
         public string Description { get; set; }
 
         public Item Item { get; set; }
 
-        [ForeignKey(nameof(User))]
-
-        public string UserId { get; set; }
+        
 
         public ApplicationUser User { get; set; }
 
         public Status.OrderEnum OrderStatus { get; set; }
 
-       
+
     }
 }

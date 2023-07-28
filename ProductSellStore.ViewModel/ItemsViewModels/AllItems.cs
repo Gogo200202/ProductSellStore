@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductSellStore.ViewModel
+namespace ProductSellStore.ViewModel.ItemsViewModels
 {
     public class AllItems
     {
@@ -16,6 +16,6 @@ namespace ProductSellStore.ViewModel
 
         public string PhotoUrl { get; set; }
 
-        
+
     }
 }

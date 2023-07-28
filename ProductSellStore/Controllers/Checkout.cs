@@ -2,7 +2,7 @@
 using ProductSellStore.Interface;
 using System.Security.Claims;
 using Microsoft.VisualBasic.FileIO;
-using ProductSellStore.ViewModel;
+using ProductSellStore.ViewModel.OrderViewModels;
 
 namespace ProductSellStore.Controllers
 {
@@ -17,9 +17,15 @@ namespace ProductSellStore.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var order = await _OrderServes.MyOrders(userId);
-            ViewBag.Items = order.Select(x => x.Item);
+
+            ViewBag.Items = order.Select(x => new
+            {
+               curentItem= x.Item,
+               curentAmount=x.Amount
+            });
+
             MakeOrder makeOrder = new MakeOrder();
-            ViewBag.Total = order.Sum(x => x.Item.Price);
+            ViewBag.Total = order.Select(x=>x.Item.Price*x.Amount).Sum();
 
             return View(makeOrder);
         }

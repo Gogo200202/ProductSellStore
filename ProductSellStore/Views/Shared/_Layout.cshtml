@@ -41,6 +41,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">Products</a>
                         </li>
                         
+                      
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CustomerOrders" asp-action="UserCuretnItems">My orders</a>
+                            </li>
+                        }
+                        
                         @if (SignInManager.IsSignedIn(User))
                         {
                            
@@ -58,12 +66,6 @@
                             }
                             
                         }
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="CustomerOrders" asp-action="UserCuretnItems">My orders</a>
-                            </li>
-                        }
                        
                         @if (SignInManager.IsSignedIn(User))
                         {
@@ -79,6 +81,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="AllOrders">All Orders</a>
                                 </li>
+
                             }
                         }
                         @if (SignInManager.IsSignedIn(User))
@@ -92,8 +95,24 @@
                             }
                             
                         }
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            
+                            if (await UserManager.IsInRoleAsync(user, "Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="Categorys">Categorys</a>
+                                </li>
+                            }
+                            if (await UserManager.IsInRoleAsync(user, "Worker"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Worker" asp-action="Categorys">Categorys</a>
+                                </li>
+
+                            }
+                        }
                       
-                       
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -154,13 +173,14 @@
                             <a href="#!">Contacts</a>
                     </li>
                     <li>
-                            <a href="#!">Help</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="TermsOfService">Terms of service</a>
                     </li>
                     <li>
-                            <a href="#!">Delivery</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="RefundPolicy">Refund policy</a>
+
                     </li>
                     <li>
-                            <a href="#!">How to shop</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="ShippingPolicy">Shipping policy</a>
                     </li>
                 </ul>
 
@@ -173,7 +193,7 @@
     </div>
     
         <div class="footer-copyright text-center py-3">
-            © 2020 Copyright:ProductSellStore
+            © 2023 Copyright:ProductSellStore
 
 
     </div>

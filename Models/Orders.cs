@@ -42,6 +42,9 @@ namespace Models
         [Required]
         public string Zip { get; set; }
 
+        [Required]
+        public int Amount { get; set; }
+
 
 
         public string? Description { get; set; }

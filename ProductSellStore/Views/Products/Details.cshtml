@@ -1,5 +1,18 @@
-﻿@model ProductSellStore.ViewModel.DetailsViweModel
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@using ProductSellStore.Data.Models
+@using ProductSellStore.Services
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ProductSellStore.ViewModel.ItemsViewModels.DetailsViweModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject UserServices UserServices;
 
+
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var user = await UserServices.GetUserById(userId);
+}
 
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -15,9 +28,16 @@
                 <p class="lead">>@Model.Description</p>
                         <div class="d-flex">
 
-
-                    <a class="btn btn-outline-dark mt-auto" asp-controller="CustomerOrders" asp-action="AddOrder" asp-route-id="@Model.Id"> Add to Shoping car</a>
-                              
+                           @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a class="btn btn-outline-dark mt-auto" asp-controller="CustomerOrders" asp-action="AddOrder" asp-route-id="@Model.Id"> Add to Shoping car</a>
+                        
+                            } else
+                           {
+                        <div>You need registration to buy any of this products</div>
+                           }
+                   
+                         
                             
                         </div>
                     </div>

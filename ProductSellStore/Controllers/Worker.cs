@@ -10,11 +10,13 @@ namespace ProductSellStore.Controllers
     {
         private readonly IOrderServes _IOrderServes;
         private readonly IUserServices _userServices;
+        private readonly ICategoryServes _categoryServices;
           
-        public Worker(IOrderServes IOrderServes, IUserServices userServices)
+        public Worker(IOrderServes IOrderServes, IUserServices userServices, ICategoryServes categoryServices)
         {
             this._IOrderServes = IOrderServes;
             _userServices = userServices;
+            _categoryServices = categoryServices;
         }
         [Authorize(Roles = "Admin,Worker")]
         public async Task<IActionResult> AllOrders()
@@ -33,6 +35,28 @@ namespace ProductSellStore.Controllers
         {
             await _userServices.MakeUserWorker(id);
             return RedirectToAction("SearchUsers");
+        }
+
+        public async Task<IActionResult> Categorys()
+        {
+            
+            return View(await _categoryServices.AllCategory());
+        }
+
+        public async Task<IActionResult> AddCategorys(string CategoryToAdd)
+        {
+            
+           
+           await _categoryServices.AddCategory(CategoryToAdd);
+            return RedirectToAction("Categorys");
+        }
+
+        public async Task<IActionResult> RemoveCategorys(string CategoryToRemove)
+        {
+
+
+            await _categoryServices.RemoveCategory(CategoryToRemove);
+            return RedirectToAction("Categorys");
         }
     }
 }

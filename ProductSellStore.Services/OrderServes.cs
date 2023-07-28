@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ProductSellStore.ViewModel;
 using System.Net;
 using System.Diagnostics.Metrics;
+using ProductSellStore.ViewModel.OrderViewModels;
 
 namespace ProductSellStore.Services
 {
@@ -23,16 +23,29 @@ namespace ProductSellStore.Services
 
         public async Task addItemToShopingCar(string userId, int idItem)
         {
-            ItemUser userItem = new ItemUser();
-            userItem.UserId = userId;
-            userItem.ItemId = idItem;
 
-      
+            bool validatorUserItem = await _context.ItemsUsers.AnyAsync(x => x.UserId == userId && x.ItemId == idItem);
+            if (validatorUserItem)
+            {
+                var userItem = await _context.ItemsUsers.FirstOrDefaultAsync(x => x.UserId == userId);
+                userItem.Amount++;
+             
+            }
+            else
+            {
+                ItemUser userItem = new ItemUser();
+                userItem.UserId = userId;
+                userItem.ItemId = idItem;
+                userItem.Amount = 1;
+                await _context.ItemsUsers.AddAsync(userItem);
+                
 
-            await _context.ItemsUsers.AddAsync(userItem);
+
+            }
             await _context.SaveChangesAsync();
-            
-           
+
+
+
         }
 
         public async Task<List<AllOrederesViweModel>> AllOreders()
@@ -48,6 +61,7 @@ namespace ProductSellStore.Services
                 Country = x.Country,
                 State = x.State,
                 Zip = x.Zip,
+                Amount = x.Amount,
                 Description = x.Description,
                 Item = x.Item,
                 User = x.User,
@@ -98,6 +112,7 @@ namespace ProductSellStore.Services
                     Email= makeOrder.Email,
                     Address= makeOrder.Address,
                     Country= makeOrder.Country,
+                    Amount = x.Amount,
                     PhoneNumber = makeOrder.PhoneNumber,
                     State= makeOrder.State,
                     Zip= makeOrder.Zip,

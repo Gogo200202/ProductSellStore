@@ -13,5 +13,17 @@ namespace ProductSellStore.Controllers
         {
             return View();
         }
+        public IActionResult TermsOfService()
+        {
+            return View();
+        }
+        public IActionResult ShippingPolicy()
+        {
+            return View();
+        }
+        public IActionResult RefundPolicy()
+        {
+            return View();
+        }
     }
 }

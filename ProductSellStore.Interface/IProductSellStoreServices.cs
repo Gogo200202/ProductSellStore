@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 using ProductSellStore.ViewModel;
+using ProductSellStore.ViewModel.ItemsViewModels;
 
 namespace ProductSellStore.Interface
 {
 
-    
+
     public interface IProductSellStoreServices
     {
         public Task<PageInfo> AllItems(string SerchString, int numberPage);

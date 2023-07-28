@@ -1,4 +1,4 @@
-﻿@model List<ProductSellStore.ViewModel.AllOrederesViweModel>
+﻿@model List<ProductSellStore.ViewModel.OrderViewModels.AllOrederesViweModel>
 <div class="container mt-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
@@ -22,9 +22,10 @@
                                 <th>Country</th>
                                 <th>State</th>
                             <th>Zip</th>
+                                <th>Amount</th>
                                 <th>Description</th>
                             <th>status</th>
-                            <th>Total</th>
+                            <th>Price of singel product</th>
                             <th>Created</th>
                             <th></th>
                         </tr>
@@ -50,6 +51,7 @@
                                         <td>@curentModel.Country</td>
                                         <td>@curentModel.State</td>
                                         <td>@curentModel.Zip</td>
+                                        <td>@curentModel.Amount</td>
                                         <td>@curentModel.Description</td>
                                 <td>@curentModel.AllStatus</td>
                                 <td>@curentModel.Item.Price</td>

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Configuration;
 using ProductSellStore.Interface;
-using ProductSellStore.ViewModel;
+using ProductSellStore.ViewModel.ItemsViewModels;
 using System.Data;
 
 namespace ProductSellStore.Controllers
