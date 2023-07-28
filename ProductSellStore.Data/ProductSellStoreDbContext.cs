@@ -12,7 +12,7 @@ namespace ProductSellStore.Data
     {
         public  DbSet<ApplicationUser> ApplicationUser { get; set; }
 
-        public  DbSet<Worker> Workers { get; set; }
+        public  DbSet<ItemComments> ItemComments { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<ItemUser> ItemsUsers { get; set; }

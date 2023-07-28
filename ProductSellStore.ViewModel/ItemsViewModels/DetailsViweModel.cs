@@ -7,11 +7,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductSellStore.ViewModel.ComnetsViewModels;
 
 namespace ProductSellStore.ViewModel.ItemsViewModels
 {
     public class DetailsViweModel
     {
+        public DetailsViweModel()
+        {
+            AllComents = new List<AllComentViewModel>();
+        }
         public int Id { get; set; }
 
 
@@ -30,6 +35,8 @@ namespace ProductSellStore.ViewModel.ItemsViewModels
         public int CategoreId { get; set; }
 
         public Category Category { get; set; } = null!;
+
+        public List<AllComentViewModel> AllComents { get; set; }
 
     }
 }

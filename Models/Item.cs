@@ -10,6 +10,11 @@ namespace Models
 {
     public class Item
     {
+
+        public Item()
+        {
+            ItemComments = new HashSet<ItemComments>();
+        }
         [Key]
         public int Id { get; set; }
 
@@ -34,5 +39,6 @@ namespace Models
         public Category Category { get; set; } = null!;
 
         //implement feedback if you can 
+        public ICollection<ItemComments> ItemComments { get; set; }
     }
 }

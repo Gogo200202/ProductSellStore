@@ -4,15 +4,18 @@ using NuGet.Configuration;
 using ProductSellStore.Interface;
 using ProductSellStore.ViewModel.ItemsViewModels;
 using System.Data;
+using System.Security.Claims;
 
 namespace ProductSellStore.Controllers
 {
     public class Products : Controller
     {
         private readonly IProductSellStoreServices _iProductSellStore;
-        public Products(IProductSellStoreServices productSellStore)
+        private readonly ICommentServes _iCommentServes;
+        public Products(IProductSellStoreServices productSellStore, ICommentServes iCommentServes)
         {
             _iProductSellStore = productSellStore;
+            _iCommentServes = iCommentServes;
         }
         public async Task<IActionResult> All(string SearchString,int numberPage)
         {
@@ -47,6 +50,8 @@ namespace ProductSellStore.Controllers
         {
             
             var detailsItem= await _iProductSellStore.GetItemDetails(id);
+            var coments = await _iCommentServes.AllCommentForThisItem(id);
+            detailsItem.AllComents= coments;
 
             return View(detailsItem) ;
         }
@@ -59,5 +64,15 @@ namespace ProductSellStore.Controllers
             return RedirectToAction("All");
         }
 
+
+        public async Task<IActionResult> MakeComment(string comment, int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+            
+             await _iCommentServes.UserMakesComment(userName,userId, id, comment);
+            return RedirectToAction("All");
+        }
     }
 }
+

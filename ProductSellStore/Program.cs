@@ -36,6 +36,7 @@ namespace ProductSellStore
             builder.Services.AddScoped<IProductSellStoreServices, Services.ProductSellStoreServices>();
             builder.Services.AddScoped<IOrderServes, Services.OrderServes>();
             builder.Services.AddScoped<ICategoryServes, Services.CategoryServes>();
+            builder.Services.AddScoped<ICommentServes, Services.CommentServes>();
            
 
             builder.Services

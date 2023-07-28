@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductSellStore.Data;
 
@@ -11,9 +12,10 @@ using ProductSellStore.Data;
 namespace ProductSellStore.Data.Migrations
 {
     [DbContext(typeof(ProductSellStoreDbContext))]
-    partial class ProductSellStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230728154433_addComentsToItems")]
+    partial class addComentsToItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,10 +260,6 @@ namespace ProductSellStore.Data.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -428,18 +426,18 @@ namespace ProductSellStore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "81482a5c-371d-4c42-a962-ccd78174a997",
+                            Id = "b86862c5-e39d-495c-b1db-c2bf925f495b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b32f44fd-ff5e-4456-92e1-de36c4f348da",
+                            ConcurrencyStamp = "8ac49034-b921-4a62-9518-37a94c3d1707",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@gmail.com",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKaZ4zh/FN9L3uWwcixMpz6oshR2IherhVHntXorxNzKT5t7Fh3L8D27LIgRROwafA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELpItpZH8KyESLfxgnPNXgZO06k/GHWQ5lO5t7Im8sb2ffSFggbYujNwkLcCflyBGQ==",
                             PhoneNumber = "+111111111111",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c9ce5625-f9f1-4fb7-bef8-7f034ff1e5ac",
+                            SecurityStamp = "ce319661-f693-43d8-a46f-70ed5449503b",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
