@@ -1,5 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ProductSellStore.ViewModel.ItemsViewModels.AddItemViewModel
+<script src="~/js/site.js"></script>
+<script src="~/js/buttonPopUp.js"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+
+    }
+}
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form method="post">
@@ -38,14 +48,8 @@
             <div class="text-center">
                 <input class="btn btn-primary mt-3" type="submit" value="Save" />
             </div>
+
         </form>
     </div>
 </div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-
-    }
-}
-<script src="~/js/site.js"></script>

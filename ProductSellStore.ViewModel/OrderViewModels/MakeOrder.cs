@@ -16,36 +16,48 @@ namespace ProductSellStore.ViewModel.OrderViewModels
 
         [Key]
         public int Id { get; set; }
-        [Required]
 
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
+        [Required(ErrorMessage = "The First name must be 50 charecters long")]
+        [MaxLength(50)]
 
-        public string Email { get; set; }
-        [Required]
-        public string PhoneNumber { get; set; }
+        public string FirstName { get; set; } = null!;
+        [Required(ErrorMessage = "The Last name must be 50 charecters long")]
+        [MaxLength(50)]
+        public string LastName { get; set; } = null!;
 
-        [Required]
-        public string Address { get; set; }
-
-        [Required]
-        public string Country { get; set; }
-        [Required]
-        public string State { get; set; }
+        [EmailAddress(ErrorMessage = "Not valid Email")]
+        public string? Email { get; set; }
 
         [Required]
-        public string Zip { get; set; }
+        [Phone(ErrorMessage = "Invalid phone number")]
+        public string PhoneNumber { get; set; } = null!;
+
+        [Required]
+        [MaxLength(100)]
+        public string Address { get; set; } = null!;
+
+        [Required]
+        [MaxLength(100)]
+        public string Country { get; set; } = null!;
+        [Required]
+        [MaxLength(100)]
+        public string State { get; set; } = null!;
+
+        [Required]
+        [MaxLength(4)]
+        public string Zip { get; set; } = null!;
+
         [Required]
         public int Amount { get; set; }
 
-        public string Description { get; set; }
+        [MaxLength(500)]
+        public string? Description { get; set; }
 
-        public Item Item { get; set; }
+        //public Item? Item { get; set; }
 
         
 
-        public ApplicationUser User { get; set; }
+        //public ApplicationUser? User { get; set; }
 
         public Status.OrderEnum OrderStatus { get; set; }
 

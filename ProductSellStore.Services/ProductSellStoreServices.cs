@@ -27,7 +27,7 @@ namespace ProductSellStore.Services
             itemForDb.Name = item.Name;
             itemForDb.Description = item.Description;
             itemForDb.Price = item.Price;
-            itemForDb.Rating = item.Rating;
+           
             itemForDb.PhotoUrl = item.PhotoUrl;
             itemForDb.CategoreId= item.CategoreId;
 
@@ -41,14 +41,19 @@ namespace ProductSellStore.Services
        
         public async Task<PageInfo> AllItems(string SearchString,int numberPage)
         {
+
             int pageSize = 3;
             PageInfo pageInfo = new PageInfo();
+            
+            
 
             pageInfo.curentPageNumber = numberPage;
 
             pageInfo.WordsToSearch = SearchString;
 
             var allItems = _context.Items.AsQueryable();
+
+            pageInfo.TotalPages = (int)Math.Ceiling(allItems.Count() / (double)pageSize);
 
             if (!string.IsNullOrWhiteSpace(SearchString))
             {
@@ -61,14 +66,15 @@ namespace ProductSellStore.Services
                 {
                     id = x.Id,
                     Name = x.Name,
-                    Raiting = x.Rating,
+                  
                     PhotoUrl = x.PhotoUrl,
                     Price = x.Price,
 
                 }).ToListAsync();
 
-
+            
             pageInfo.allItems= resolt;
+            pageInfo.HasNextPage= pageInfo.curentPageNumber < pageInfo.TotalPages-1;
             return pageInfo;
         }
 
@@ -89,7 +95,7 @@ namespace ProductSellStore.Services
             details.Id = resoltDetails.Id;
             details.Name= resoltDetails.Name;
             details.Description= resoltDetails.Description;
-            details.Rating = resoltDetails.Rating;
+            
             details.Price = resoltDetails.Price;
             details.PhotoUrl = resoltDetails.PhotoUrl;
             details.CategoreId= resoltDetails.CategoreId;

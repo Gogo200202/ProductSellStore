@@ -22,7 +22,8 @@ namespace Models
         public string UserName { get; set; }
 
 
-        [Required] 
+        [Required]
+        [MaxLength(150)]
         public string Comment { get; set; }
         [ForeignKey(nameof(Item))]
 

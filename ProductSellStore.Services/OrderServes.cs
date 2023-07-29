@@ -74,7 +74,7 @@ namespace ProductSellStore.Services
                 AllStatus = x.OrderStatus
 
             }).ToListAsync();
-
+            resoltOfAllOreders.Reverse();
             return resoltOfAllOreders;
         }
 

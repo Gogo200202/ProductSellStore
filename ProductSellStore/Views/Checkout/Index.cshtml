@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ProductSellStore.ViewModel.OrderViewModels.MakeOrder
+
 <div class="row">
     <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -40,23 +41,19 @@
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>
 
-      <form asp-action="Index" method="post" class="needs-validation">
+      <form asp-controller="Checkout" asp-action="Index" method="post" class="needs-validation">
         <div class="row">
           <div class="col-md-6 mb-3">
-                    <label asp-for="FirstName" >First name</label>
-                    <input asp-for="FirstName" type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                    <span asp-validation-for="FirstName" class="small text-danger"></span>
-                    <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
+                    <label asp-for="@Model.FirstName" >First name</label>
+                    <input asp-for="@Model.FirstName" type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                    <span asp-validation-for="@Model.FirstName" class="small text-danger"></span>
+                 
           </div>
           <div class="col-md-6 mb-3">
             <label asp-for="LastName">Last name</label>
                     <input asp-for="LastName" type="text" class="form-control" id="lastName" placeholder="" value="" required>
                     <span asp-validation-for="LastName" class="small text-danger"></span>
-                    <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
+                   
           </div>
         </div>
 
@@ -64,14 +61,14 @@
 
           <div class="mb-3">
               <label asp-for="Email" >Email <span class="text-muted">(Optional)</span></label>
-              <input asp-for="Email " data-val="false" value="" type="text" class="form-control" id="email" placeholder="you@example.com">
-          
+                <input asp-for="Email " data-val="false" value="" type="text" class="form-control" id="email" placeholder="you@example.com" value="">
+              <span asp-validation-for="Email" class="small text-danger"></span>
           </div>
           
           <div class="mb-3">
-                <label asp-for="PhoneNumber">Phone Number <span class="text-muted"></span></label>
-              <input asp-for="PhoneNumber " data-val="false" value="" type="text" class="form-control" id="phonenumber" placeholder="359+...." required>
-                <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+                <label asp-for="@Model.PhoneNumber">Phone Number <span class="text-muted"></span></label>
+                <input asp-for="@Model.PhoneNumber" value="" type="text" class="form-control" id="phonenumber" placeholder="359+...." value="" required>
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
           
           </div>
 
@@ -79,9 +76,7 @@
           <label asp-for="Address">Address</label>
             <input asp-for="Address" type="text" class="form-control" id="address" placeholder="1234 Main St" required>
                 <span asp-validation-for="Address" class="small text-danger"></span>
-          <div class="invalid-feedback">
-            Please enter your shipping address.
-          </div>
+        
         </div>
 
         
@@ -91,33 +86,28 @@
                   <label asp-for="Country">Country</label>
                   <input asp-for="Country" type="text" class="form-control" id="country" placeholder="Country" required>
                     <span asp-validation-for="Country" class="small text-danger"></span>
-                  <div class="invalid-feedback">
-                      Please enter your Country.
-                  </div>
+                  
               </div>
 
               <div class="col-md-4 mb-3">
                   <label asp-for="State">State</label>
                   <input asp-for="State" type="text" class="form-control" id="State" placeholder="State" required>
                     <span asp-validation-for="Country" class="small text-danger"></span>
-                  <div class="invalid-feedback">
-                      Please enter your State.
-                  </div>
+                  
               </div>
               <div class="col-md-3 mb-3">
                   <label asp-for="Zip">Zip</label>
                   <input asp-for="Zip" type="text" class="form-control" id="zip" placeholder="Zip" required>
                     <span asp-validation-for="Country" class="small text-danger"></span>
-                  <div class="invalid-feedback">
-                      Zip code required.
-                  </div>
+                  
               </div>
           </div>
           
           <div class="input-group">
                 <label asp-for="Description" Name="Description" class="input-group-text">Description</label>
                 <textarea asp-for="Description" data-val="false" value="" class="form-control" aria-label="With textarea"></textarea>
-          </div>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+              </div>
 
 
         
@@ -142,5 +132,7 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
     }
 }
+<script src="~/js/site.js"></script>

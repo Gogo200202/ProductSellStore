@@ -52,7 +52,7 @@ namespace ProductSellStore.Data
             item1.Id = 1;
             item1.Name = "Lenovo Thinkpad";
             item1.Description = "good pc";
-            item1.Rating = 5;
+            
             item1.PhotoUrl = "https://pcbuild.bg/assets/products/000/000/247/000000247696--laptop-lenovo-thinkpad-14-g1-20u2s7cy00.jpg";
             item1.CategoreId = 1;
             items.Add(item1);

@@ -21,32 +21,40 @@ namespace Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [MaxLength(50)]
 
         public string FirstName { get; set; }
         [Required]
+        [MaxLength(50)]
         public string LastName { get; set; }
 
+        [EmailAddress]
         public string? Email { get; set; }
 
         [Required]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string Address { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string Country { get; set; }
         [Required]
+        [MaxLength(100)]
         public string State { get; set; }
 
         [Required]
+        [MaxLength(4)]
         public string Zip { get; set; }
 
         [Required]
         public int Amount { get; set; }
 
 
-
+        [MaxLength(500)]
         public string? Description { get; set; }
 
         [ForeignKey(nameof(Item))]

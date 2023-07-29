@@ -22,12 +22,23 @@
     </p>
 
 </form>
-<a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber-1)">Previos</a>
+@{
+    if (@Model.curentPageNumber>=1)
+    {
+        <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber-1)">Previos</a>
+
+    }
+}
 
 
+@{
+    if (@Model.HasNextPage)
+    {
+        <a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber+1)">Next</a>
 
+    }
+}
 
-<a class="btn btn-outline-dark mt-auto" asp-controller="Products" asp-action="All" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber+1)">Next</a>
 
 
                

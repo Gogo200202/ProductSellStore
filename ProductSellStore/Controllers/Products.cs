@@ -19,9 +19,13 @@ namespace ProductSellStore.Controllers
         }
         public async Task<IActionResult> All(string SearchString,int numberPage)
         {
-            
+            if (numberPage < 0)
+            {
+                return BadRequest();
+            }
+
             var Model = await _iProductSellStore.AllItems(SearchString, numberPage);
-            
+           
             return View(Model);
 
         }
@@ -71,7 +75,8 @@ namespace ProductSellStore.Controllers
             var userName = User.FindFirstValue(ClaimTypes.Name);
             
              await _iCommentServes.UserMakesComment(userName,userId, id, comment);
-            return RedirectToAction("All");
+
+             return RedirectToAction("Details", new { id }); ;
         }
     }
 }

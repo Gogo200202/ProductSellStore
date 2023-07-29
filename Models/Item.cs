@@ -24,13 +24,14 @@ namespace Models
         [Required]
 
         public string Description { get; set; } = null!;
-        [Range(0,5)]
-        public int Rating { get; set; }
+        
 
         [Required]
+       
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
-
+        [Required]
+        [Url]
         public string PhotoUrl { get; set; }
 
         [ForeignKey(nameof(Category))]
@@ -38,7 +39,7 @@ namespace Models
         [Required]
         public Category Category { get; set; } = null!;
 
-        //implement feedback if you can 
+        
         public ICollection<ItemComments> ItemComments { get; set; }
     }
 }

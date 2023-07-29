@@ -13,6 +13,8 @@ namespace ProductSellStore.Controllers
         {
             this._OrderServes=OrderServes;
         }
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -34,6 +36,21 @@ namespace ProductSellStore.Controllers
         public async Task<IActionResult> Index(MakeOrder makeOrder)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!ModelState.IsValid)
+            {
+                
+                var order = await _OrderServes.MyOrders(userId);
+
+                ViewBag.Items = order.Select(x => new
+                {
+                    curentItem = x.Item,
+                    curentAmount = x.Amount
+                });
+                ViewBag.Total = order.Select(x => x.Item.Price * x.Amount).Sum();
+
+                return View(makeOrder);
+            }
+         
            await _OrderServes.UserMakesOrder(userId, makeOrder);
 
             return RedirectToAction("All","Products");

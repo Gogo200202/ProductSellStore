@@ -21,7 +21,15 @@ namespace ProductSellStore.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
           
             await _iOrderServes.addItemToShopingCar(userId, Id);
-            return RedirectToAction("All","Products");
+         
+
+            var parameters = new RouteValueDictionary();
+
+            parameters["id"] = Id;
+
+            TempData["ShowPopUp"] = "fade show";
+
+            return RedirectToAction("Details","Products", parameters);
         }
 
         public async Task<IActionResult> UserCuretnItems(int Id)
