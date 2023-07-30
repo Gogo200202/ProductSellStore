@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProductSellStore.Data;
-using ProductSellStore.ViewModel;
 using ProductSellStore.ViewModel.ItemsViewModels;
+using ProductSellStore.ViewModel.PagesViewModels;
 
 namespace ProductSellStore.Services
 {

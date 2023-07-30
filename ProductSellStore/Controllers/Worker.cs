@@ -19,9 +19,14 @@ namespace ProductSellStore.Controllers
             _categoryServices = categoryServices;
         }
         [Authorize(Roles = "Admin,Worker")]
-        public async Task<IActionResult> AllOrders()
+        public async Task<IActionResult> AllOrders(string SearchString, int numberPage)
         {
-            var resolt = await _IOrderServes.AllOreders();
+            if (numberPage < 0)
+            {
+                return BadRequest();
+            }
+
+            var resolt = await _IOrderServes.AllOreders(SearchString, numberPage);
             return View(resolt);
         }
 

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Diagnostics.Metrics;
 using ProductSellStore.ViewModel.OrderViewModels;
+using ProductSellStore.ViewModel.PagesViewModels;
 
 namespace ProductSellStore.Services
 {
@@ -27,7 +28,7 @@ namespace ProductSellStore.Services
             bool validatorUserItem = await _context.ItemsUsers.AnyAsync(x => x.UserId == userId && x.ItemId == idItem);
             if (validatorUserItem)
             {
-                var userItem = await _context.ItemsUsers.FirstOrDefaultAsync(x => x.UserId == userId);
+                var userItem = await _context.ItemsUsers.FirstOrDefaultAsync(x => x.ItemId == idItem);
                 userItem.Amount++;
              
             }
@@ -48,10 +49,33 @@ namespace ProductSellStore.Services
 
         }
 
-        public async Task<List<AllOrederesViweModel>> AllOreders()
+        public async Task<PageInfoOrders> AllOreders(string SearchString, int numberPage)
         {
 
-            var resoltOfAllOreders = await _context.Orders.Select(x => new AllOrederesViweModel()
+
+            int pageSize = 3;
+            PageInfoOrders pageInfo = new PageInfoOrders();
+
+
+
+            pageInfo.curentPageNumber = numberPage;
+
+            pageInfo.WordsToSearch = SearchString;
+
+            var AllOrders = _context.Orders.AsQueryable();
+
+            pageInfo.TotalPages = (int)Math.Ceiling(AllOrders.Count() / (double)pageSize);
+
+            if (!string.IsNullOrWhiteSpace(SearchString))
+            {
+                AllOrders = AllOrders.Where(b => b.PhoneNumber.Contains(SearchString));
+            }
+
+            AllOrders = AllOrders.Skip((numberPage) * pageSize).Take(pageSize);
+
+
+
+            var resoltOfAllOreders = await AllOrders.Select(x => new AllOrederesViweModel()
             {
                 FirstName = x.FirstName,
                 LastName = x.LastName,
@@ -75,7 +99,11 @@ namespace ProductSellStore.Services
 
             }).ToListAsync();
             resoltOfAllOreders.Reverse();
-            return resoltOfAllOreders;
+
+            pageInfo.allOrders = resoltOfAllOreders;
+            pageInfo.HasNextPage = pageInfo.curentPageNumber < pageInfo.TotalPages - 1;
+
+            return pageInfo;
         }
 
         public async Task<List<ItemUser>> MyOrders(string userId)
@@ -97,6 +125,17 @@ namespace ProductSellStore.Services
 
             _context.ItemsUsers.Remove(resoltDelete);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task updateAmount(string userId, int ItemId, int Amount)
+        {
+
+            var myOred = await _context.ItemsUsers
+                    .FirstOrDefaultAsync(b=>b.ItemId== ItemId&&b.UserId== userId);
+            myOred.Amount=Amount;
+            await _context.SaveChangesAsync();
+
+
         }
 
         public async Task UserMakesOrder(string userId, MakeOrder makeOrder)

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProductSellStore.ViewModel.ItemsViewModels;
 
-namespace ProductSellStore.ViewModel
+namespace ProductSellStore.ViewModel.PagesViewModels
 {
     public class PageInfo
     {
@@ -13,7 +13,7 @@ namespace ProductSellStore.ViewModel
         {
             allItems = new List<AllItems>();
         }
-        public int TotalPages { get;  set; }
+        public int TotalPages { get; set; }
         public string WordsToSearch { get; set; }
         public int curentPageNumber { get; set; }
         public bool HasNextPage { get; set; }

@@ -1,4 +1,7 @@
-﻿@model List<Models.ItemUser>
+﻿
+
+@model List<Models.ItemUser>
+
 
 <section class="h-100">
     <div class="container h-100 py-5">
@@ -14,8 +17,12 @@
                    }
 
                }
+               
+               
                 <div class="card rounded-3 mb-4">
                     @{
+                         
+
                         foreach (var curentModels in Model)
                         {
                             
@@ -30,11 +37,14 @@
                                             <p class="lead fw-normal mb-2">@curentModels.Item.Name</p>
                                         </div>
                                         
-                                        
+                                      
 
                                         <div class="col-md-1 col-lg-1 col-xl-1">
                                             <div>Amount </div>
-                                        <input type="number" min="1" value="@curentModels.Amount" class="form-control form-icon-trailing" />
+                                        <a asp-controller="CustomerOrders" asp-action="UpdataAmount" asp-route-itemId="@curentModels.Item.Id" asp-route-amount="@(curentModels.Amount-1)" type="button" class="btn btn-outline-primary">Remove</a>
+                                            <p class="lead fw-normal mb-2">@curentModels.Amount</p>
+                                        <a asp-controller="CustomerOrders" asp-action="UpdataAmount" asp-route-itemId="@curentModels.Item.Id" asp-route-amount="@(curentModels.Amount+1)" type="button" class="btn btn-outline-primary">Add</a>
+
                                         </div>
                                         
 
@@ -51,8 +61,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            
-                            
+
+
+
                         }
                     }
                    

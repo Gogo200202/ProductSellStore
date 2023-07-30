@@ -7,6 +7,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject UserServices UserServices;
+@inject IOrderServes OrderServes
 
 
 @{
@@ -47,6 +48,14 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="CustomerOrders" asp-action="UserCuretnItems">My orders</a>
                             </li>
+                            
+                            var myOrders = await OrderServes.MyOrders(userId);
+                            if (myOrders.Count()>0)
+                            {
+                                <small class="text-muted">@myOrders.Sum(x=>x.Amount)</small>
+                            }
+                           
+
                         }
                         
                         @if (SignInManager.IsSignedIn(User))

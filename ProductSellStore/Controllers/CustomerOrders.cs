@@ -31,8 +31,16 @@ namespace ProductSellStore.Controllers
 
             return RedirectToAction("Details","Products", parameters);
         }
+        public async Task<IActionResult> UpdataAmount(int itemId,int amount)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        public async Task<IActionResult> UserCuretnItems(int Id)
+            await _iOrderServes.updateAmount(userId, itemId, amount);
+
+            return RedirectToAction("UserCuretnItems");
+        }
+
+        public async Task<IActionResult> UserCuretnItems()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 

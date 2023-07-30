@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
-using ProductSellStore.ViewModel;
 using ProductSellStore.ViewModel.ItemsViewModels;
+using ProductSellStore.ViewModel.PagesViewModels;
 
 namespace ProductSellStore.Interface
 {

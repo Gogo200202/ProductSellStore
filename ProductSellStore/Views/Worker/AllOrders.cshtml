@@ -1,4 +1,29 @@
-﻿@model List<ProductSellStore.ViewModel.OrderViewModels.AllOrederesViweModel>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ProductSellStore.ViewModel.PagesViewModels.PageInfoOrders
+
+<form asp-controller="Worker" asp-action="AllOrders" method="get">
+    <p>
+        Search by phone number:<input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+
+</form>
+@{
+    if (@Model.curentPageNumber >= 1)
+    {
+        <a class="btn btn-outline-dark mt-auto" asp-controller="Worker" asp-action="AllOrders" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber-1)">Previos</a>
+
+    }
+}
+
+
+@{
+    if (@Model.HasNextPage)
+    {
+        <a class="btn btn-outline-dark mt-auto" asp-controller="Worker" asp-action="AllOrders" asp-route-SearchString="@Model.WordsToSearch" asp-route-numberPage="@(Model.curentPageNumber+1)">Next</a>
+
+    }
+}
 <div class="container mt-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
@@ -31,7 +56,7 @@
                         </tr>
                         </thead>
                     @{
-                        foreach (var curentModel in Model)
+                        foreach (var curentModel in Model.allOrders)
                         {
                             <tbody class="table-body">
                             <tr class="cell-1">
