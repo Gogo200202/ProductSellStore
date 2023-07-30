@@ -20,10 +20,14 @@ namespace ProductSellStore.Services
         }
         public async Task AddCategory(string categoyName)
         {
-            Category category= new Category();
-            category.Name = categoyName;
-           await _db.Categories.AddAsync(category);
-           await _db.SaveChangesAsync();
+            if (!String.IsNullOrWhiteSpace(categoyName))
+            {
+                Category category = new Category();
+                category.Name = categoyName;
+                await _db.Categories.AddAsync(category);
+                await _db.SaveChangesAsync();
+            }
+            
         }
 
         public async Task<List<Category>>AllCategory()
@@ -33,12 +37,16 @@ namespace ProductSellStore.Services
 
         public async Task RemoveCategory(string categoyName)
         {
-          var Category= await _db.Categories.FirstOrDefaultAsync(x=>x.Name==categoyName);
-          if (Category != null)
-          {
-                _db.Categories.Remove(Category);
-                await _db.SaveChangesAsync();
+            if (!string.IsNullOrWhiteSpace(categoyName))
+            {
+                var Category = await _db.Categories.FirstOrDefaultAsync(x => x.Name == categoyName);
+                if (Category != null)
+                {
+                    _db.Categories.Remove(Category);
+                    await _db.SaveChangesAsync();
+                }
             }
+         
           
         }
     }
