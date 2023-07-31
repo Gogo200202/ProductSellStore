@@ -52,13 +52,16 @@ namespace ProductSellStore
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if (!app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+                
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+               
+                app.UseStatusCodePagesWithRedirects("/Home/Error?Code={0}");
                 
                 app.UseHsts();
             }
