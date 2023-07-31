@@ -17,7 +17,7 @@ namespace ProductSellStore.Test
     {
         private ProductSellStoreDbContext dbContext;
         private ICommentServes Coments;
-        [SetUp]
+        [OneTimeSetUp]
         public void TestInitialize()
         {
             var hasher = new PasswordHasher<IdentityUser>();
@@ -47,25 +47,62 @@ namespace ProductSellStore.Test
 
 
             var options = new DbContextOptionsBuilder<ProductSellStoreDbContext>()
-                .UseInMemoryDatabase(databaseName: "ProductDb") // Give a Unique name to the DB
+                .UseInMemoryDatabase(databaseName: "ProductDbCategory") // Give a Unique name to the DB
                 .Options;
             this.dbContext = new ProductSellStoreDbContext(options);
-            
-            this.dbContext.ApplicationUser.AddAsync(user);
-            this.dbContext.Items.AddAsync(item1);
+            if (!dbContext.ApplicationUser.Any(x => x.Id == "bcd657ac-87da-443d-b86e-68a2aa84a932"))
+            {
+                this.dbContext.ApplicationUser.AddAsync(user);
+
+                this.dbContext.Items.AddAsync(item1);
+         
+            }
+
             this.dbContext.SaveChanges();
         }
         [Test]
-        public async Task Test_Category_Add_ALL()
+        public void Test_Category_Add_ALL()
+        {
+            ICommentServes Coments = new CommentServes(this.dbContext);
+            int count=0;
+           Task.Run(async () =>
+                {
+
+                  await  Coments.UserMakesComment("user", "bd82398d-3960-46a9-b659-42bdcec8495f", 2, "neshto");
+
+                    
+                    count = dbContext.Items.ToList().Count;
+
+                })
+                .GetAwaiter()
+                .GetResult();
+            
+            
+
+            Assert.AreEqual(count ,1);
+        }
+
+        [Test]
+        public async Task Test_Category_ALL()
         {
             ICommentServes Coments = new CommentServes(this.dbContext);
 
-            Coments.UserMakesComment("user", "bd82398d-3960-46a9-b659-42bdcec8495f", 2, "neshto");
+            int countDB = 0;
+            int countServes = 0;
+            Task.Run(async () =>
+                {
 
-            var countcatrgory = await Coments.AllCommentForThisItem(2);
-            var count = countcatrgory.Count;
 
-            Assert.AreEqual(count ,1);
+                    var serves =await Coments.AllCommentForThisItem(2);
+                    countServes = serves.Count;
+                    countDB = dbContext.ItemComments.ToList().Count;
+
+                })
+                .GetAwaiter()
+                .GetResult();
+
+
+            Assert.AreEqual(countDB, countServes);
         }
 
     }

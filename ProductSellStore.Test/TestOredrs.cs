@@ -20,7 +20,8 @@ namespace ProductSellStore.Test
       
 
         private ProductSellStoreDbContext dbContext;
-        [OneTimeSetUp]
+        [SetUp]
+       
         public void TestInitialize()
         {
             var hasher = new PasswordHasher<IdentityUser>();
@@ -63,12 +64,17 @@ namespace ProductSellStore.Test
                 .Options;
             this.dbContext = new ProductSellStoreDbContext(options);
 
-            this.dbContext.ApplicationUser.AddAsync(user);
-            this.dbContext.Items.AddAsync(item1);
-            this.dbContext.Items.AddAsync(item2);
+            if (!dbContext.ApplicationUser.Any(x=>x.Id== "bcd657ac-87da-443d-b86e-68a2aa84a932"))
+            {
+                this.dbContext.ApplicationUser.AddAsync(user);
+
+                this.dbContext.Items.AddAsync(item1);
+                this.dbContext.Items.AddAsync(item2);
+            }
+           
             this.dbContext.SaveChanges();
         }
-
+     
 
 
         [Test]
