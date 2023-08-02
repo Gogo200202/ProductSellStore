@@ -41,8 +41,12 @@
 
                                         <div class="col-md-1 col-lg-1 col-xl-1">
                                             <div>Amount </div>
-                                        <a asp-controller="CustomerOrders" asp-action="UpdataAmount" asp-route-itemId="@curentModels.Item.Id" asp-route-amount="@(curentModels.Amount-1)" type="button" class="btn btn-outline-primary">Remove</a>
-                                            <p class="lead fw-normal mb-2">@curentModels.Amount</p>
+                                        @if (curentModels.Amount>1)
+                                            {
+                                            <a asp-controller="CustomerOrders" asp-action="UpdataAmount" asp-route-itemId="@curentModels.Item.Id" asp-route-amount="@(curentModels.Amount-1)" type="button" class="btn btn-outline-primary">Remove</a>
+
+                                        }
+                                           <p class="lead fw-normal mb-2">@curentModels.Amount</p>
                                         <a asp-controller="CustomerOrders" asp-action="UpdataAmount" asp-route-itemId="@curentModels.Item.Id" asp-route-amount="@(curentModels.Amount+1)" type="button" class="btn btn-outline-primary">Add</a>
 
                                         </div>

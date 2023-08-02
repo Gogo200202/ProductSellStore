@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductSellStore.Interface;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.VisualBasic.FileIO;
 using ProductSellStore.ViewModel.OrderViewModels;
 
 namespace ProductSellStore.Controllers
 {
+    [Authorize]
     public class Checkout : Controller
     {
         private readonly IOrderServes _OrderServes;
@@ -17,15 +19,19 @@ namespace ProductSellStore.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var order = await _OrderServes.MyOrders(userId);
-
+            if (order.Count <= 0)
+            {
+                return BadRequest();
+            }
             ViewBag.Items = order.Select(x => new
             {
                curentItem= x.Item,
                curentAmount=x.Amount
             });
-
+            
             MakeOrder makeOrder = new MakeOrder();
             ViewBag.Total = order.Select(x=>x.Item.Price*x.Amount).Sum();
 

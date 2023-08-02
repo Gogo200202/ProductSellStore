@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductSellStore.Interface;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductSellStore.Controllers
 {
+    [Authorize]
     public class CustomerOrders : Controller
     {
         private readonly IOrderServes _iOrderServes;
@@ -19,7 +21,11 @@ namespace ProductSellStore.Controllers
         public async Task<IActionResult> AddOrder(int Id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-          
+
+            if (!await _iOrderServes.validItem(Id))
+            {
+                return BadRequest();
+            }
             await _iOrderServes.addItemToShopingCar(userId, Id);
          
 
@@ -33,6 +39,10 @@ namespace ProductSellStore.Controllers
         }
         public async Task<IActionResult> UpdataAmount(int itemId,int amount)
         {
+            if (!await _iOrderServes.validItem(itemId))
+            {
+                return BadRequest();
+            }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             await _iOrderServes.updateAmount(userId, itemId, amount);
@@ -51,6 +61,10 @@ namespace ProductSellStore.Controllers
 
         public async Task<IActionResult> RemoverCuretnUserItem(int id)
         {
+            if (!await _iOrderServes.validItem(id))
+            {
+                return BadRequest();
+            }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
              await _iOrderServes.RemoverUserItem(userId, id);

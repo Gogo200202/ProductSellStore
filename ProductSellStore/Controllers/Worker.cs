@@ -6,6 +6,7 @@ using ProductSellStore.Web.SeedRoles;
 
 namespace ProductSellStore.Controllers
 {
+    [Authorize(Roles = "Worker")]
     public class Worker : Controller
     {
         private readonly IOrderServes _IOrderServes;
@@ -18,7 +19,7 @@ namespace ProductSellStore.Controllers
             _userServices = userServices;
             _categoryServices = categoryServices;
         }
-        [Authorize(Roles = "Admin,Worker")]
+        
         public async Task<IActionResult> AllOrders(string SearchString, int numberPage)
         {
             if (numberPage < 0)
@@ -29,13 +30,13 @@ namespace ProductSellStore.Controllers
             var resolt = await _IOrderServes.AllOreders(SearchString, numberPage);
             return View(resolt);
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SearchUsers(string SearchString)
         {
             var user =await _userServices.GetByuserName(SearchString);
             return View(user);
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> MakeUserWorker(string id)
         {
             await _userServices.MakeUserWorker(id);

@@ -26,6 +26,7 @@ namespace ProductSellStore.Services
         {
 
             bool validatorUserItem = await _context.ItemsUsers.AnyAsync(x => x.UserId == userId && x.ItemId == idItem);
+
             if (validatorUserItem)
             {
                 var userItem = await _context.ItemsUsers.FirstOrDefaultAsync(x => x.ItemId == idItem);
@@ -176,6 +177,12 @@ namespace ProductSellStore.Services
             await _context.SaveChangesAsync();
 
             
+        }
+
+        public async Task<bool> validItem(int ItemId)
+        {
+            var resolt=  await _context.Items.AnyAsync(x => x.Id == ItemId);
+            return  resolt;
         }
     }
 }

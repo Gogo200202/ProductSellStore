@@ -21,6 +21,8 @@ namespace ProductSellStore.Interface
 
         public Task updateAmount(string userId,int ItemId, int Amount);
 
+        public Task<bool> validItem(int ItemId);
+
 
     }
 }
