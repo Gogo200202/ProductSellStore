@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSellStore.Web.SeedRo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CAA544C5-CFC2-414E-B176-C1E097077EAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductSellStore.Test", "ProductSellStore.Test\ProductSellStore.Test.csproj", "{746C4A82-3ABB-49CD-9E80-6C1C62BFCD10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSellStore.Test", "ProductSellStore.Test\ProductSellStore.Test.csproj", "{746C4A82-3ABB-49CD-9E80-6C1C62BFCD10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -97,6 +97,15 @@ namespace ProductSellStore.Controllers
 
              return RedirectToAction("Details", new { id }); ;
         }
+        [Authorize]
+        public async Task<IActionResult> DeleteComment(int itemId,int Comentid)
+        {
+
+            await _iCommentServes.DeleteComment(Comentid);
+
+
+            return RedirectToAction("Details", new { id = itemId }); ;
+        }
     }
 }
 

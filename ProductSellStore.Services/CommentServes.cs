@@ -40,6 +40,12 @@ namespace ProductSellStore.Services
             
         }
 
+        public async Task<bool> checkIfUserMakesThatComment(string userId, int commentId)
+        {
+            var resolt = await _context.ItemComments.AnyAsync(x=>x.UserId== userId&&x.Id==commentId);
+            return resolt;
+        }
+
         public async Task DeleteComment(int commentId)
        {
            var comennt = await _context.ItemComments.FindAsync(commentId);

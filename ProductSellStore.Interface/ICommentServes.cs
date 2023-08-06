@@ -13,5 +13,7 @@ namespace ProductSellStore.Interface
         public Task DeleteComment(int commentId);
         public Task<List<AllComentViewModel>> AllCommentForThisItem(int itemId);
 
+        public Task<bool> checkIfUserMakesThatComment(string userId,int commentId);
+
     }
 }

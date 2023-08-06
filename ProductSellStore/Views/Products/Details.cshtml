@@ -3,10 +3,12 @@
 @using ProductSellStore.Data.Models
 @using ProductSellStore.Services
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using ProductSellStore.Interface
 @model ProductSellStore.ViewModel.ItemsViewModels.DetailsViweModel
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject UserServices UserServices;
+@inject ICommentServes CommentServes;
 
 
 
@@ -95,14 +97,39 @@
                                         <div class="card w-100">
                                             <div class="card-body p-4">
                                                 <div class="">
-                                                    <div class="d-none">@comment.UserId</div>
-                                                    <div class="d-none">@comment.Id</div>
+                                                    
                                                     <h5>@comment.UserName</h5>
                                                     
                                                     <p>
                                                         @comment.comment
+                                                      
                                                     </p>
-
+                                                    @{
+                                                       
+                                                        @if (SignInManager.IsSignedIn(User))
+                                                        {
+                                                            if ( await CommentServes.checkIfUserMakesThatComment(userId, comment.Id))
+                                                            {
+                                                                <div> 
+                                                                    <a class="btn btn-outline-danger" asp-controller="Products" asp-action="DeleteComment" asp-route-itemId="@Model.Id" asp-route-Comentid="@comment.Id">Delete</a>
+                                                                </div>
+                                                            }
+                                                            if (await UserManager.IsInRoleAsync(user, "Admin"))
+                                                            {
+                                                                <div> 
+                                                                    <a class="btn btn-outline-danger" asp-controller="Products" asp-action="DeleteComment" asp-route-itemId="@Model.Id" asp-route-Comentid="@comment.Id">Delete</a>
+                                                                </div>
+                                                            }
+                                                            if (await UserManager.IsInRoleAsync(user, "Worker"))
+                                                            {
+                                                                <div>
+                                                                    <a class="btn btn-outline-danger" asp-controller="Products" asp-action="DeleteComment" asp-route-itemId="@Model.Id" asp-route-Comentid="@comment.Id">Delete</a>
+                                                                </div>
+                                                            }
+                            
+                                                        }
+                                                    }
+                                                   
 
                                                 </div>
                                             </div>
