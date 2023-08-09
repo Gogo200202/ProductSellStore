@@ -6,7 +6,8 @@ using ProductSellStore.Web.SeedRoles;
 
 namespace ProductSellStore.Controllers
 {
-    [Authorize(Roles = "Worker")]
+    [Authorize(Roles = "Worker,Admin")]
+    
     public class Worker : Controller
     {
         private readonly IOrderServes _IOrderServes;
@@ -30,12 +31,15 @@ namespace ProductSellStore.Controllers
             var resolt = await _IOrderServes.AllOreders(SearchString, numberPage);
             return View(resolt);
         }
+
         [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> SearchUsers(string SearchString)
         {
             var user =await _userServices.GetByuserName(SearchString);
             return View(user);
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> MakeUserWorker(string id)
         {
@@ -43,12 +47,14 @@ namespace ProductSellStore.Controllers
             return RedirectToAction("SearchUsers");
         }
 
+       
         public async Task<IActionResult> Categorys()
         {
             
             return View(await _categoryServices.AllCategory());
         }
 
+       
         public async Task<IActionResult> AddCategorys(string CategoryToAdd)
         {
             
@@ -57,6 +63,8 @@ namespace ProductSellStore.Controllers
             return RedirectToAction("Categorys");
         }
 
+
+        
         public async Task<IActionResult> RemoveCategorys(string CategoryToRemove)
         {
 
