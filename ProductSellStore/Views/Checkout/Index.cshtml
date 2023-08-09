@@ -22,7 +22,7 @@
                             <div>Amount</div>
                             <small class="text-muted">@item.curentAmount</small>
                         </div>
-                        <span class="text-muted">$@item.curentItem.Price</span>
+                        <span class="text-muted">$ @String.Format("{0:f2}", @item.curentItem.Price)</span>
 
                     </li>
                   
@@ -32,7 +32,7 @@
 
             <li class="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
-                <strong>$@ViewBag.Total </strong>
+                <strong>$ @String.Format("{0:f2}", @ViewBag.Total) </strong>
             </li>
         </ul>
 

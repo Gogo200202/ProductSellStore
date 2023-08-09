@@ -41,7 +41,7 @@
                 <h1 class="display-5 fw-bolder">@Model.Name</h1>
                 <h3 class="text-muted">@Model.Category.Name</h3>
                 <div class="fs-5 mb-5">
-                    <span>@Model.Price</span>
+                    <span> @String.Format("{0:f2}", @Model.Price)</span>
 
                 </div>
                 <p class="lead">>@Model.Description</p>
