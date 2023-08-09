@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProductSellStore.Data.Models.Enums;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace ProductSellStore.ViewModel.OrderViewModels
@@ -42,7 +42,6 @@ namespace ProductSellStore.ViewModel.OrderViewModels
 
         public Item Item { get; set; }
 
-        public Status.OrderEnum AllStatus { get; set; }
 
 
         public string UserId { get; set; }

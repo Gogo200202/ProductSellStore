@@ -96,7 +96,7 @@ namespace ProductSellStore.Services
                 UserId = x.UserId,
              
                 CreatedOn = x.OrderOn,
-                AllStatus = x.OrderStatus
+              
 
             }).ToListAsync();
             resoltOfAllOreders.Reverse();

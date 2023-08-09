@@ -1,5 +1,5 @@
 ﻿using Models;
-using ProductSellStore.Data.Models.Enums;
+
 using ProductSellStore.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -53,13 +53,8 @@ namespace ProductSellStore.ViewModel.OrderViewModels
         [MaxLength(500)]
         public string? Description { get; set; }
 
-        //public Item? Item { get; set; }
-
         
-
-        //public ApplicationUser? User { get; set; }
-
-        public Status.OrderEnum OrderStatus { get; set; }
+      
 
 
     }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using ProductSellStore.Data.Models;
-using ProductSellStore.Data.Models.Enums;
+
 
 
 namespace Models
@@ -68,7 +68,6 @@ namespace Models
 
         public ApplicationUser User { get; set; }
 
-        public Status.OrderEnum OrderStatus { get; set; }
 
         public DateTime OrderOn { get; set; }
 
