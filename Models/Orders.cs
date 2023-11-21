@@ -54,7 +54,7 @@ namespace Models
         public int Amount { get; set; }
 
 
-        [MaxLength(500)]
+        [MaxLength(100)]
         public string? Description { get; set; }
 
         [ForeignKey(nameof(Item))]

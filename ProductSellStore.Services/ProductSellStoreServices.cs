@@ -29,7 +29,7 @@ namespace ProductSellStore.Services
             itemForDb.Price = item.Price;
            
             itemForDb.PhotoUrl = item.PhotoUrl;
-            itemForDb.CategoreId= item.CategoreId;
+            itemForDb.CategoreId= item.Category;
 
 
            await _context.Items.AddAsync(itemForDb);

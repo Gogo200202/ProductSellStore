@@ -32,7 +32,7 @@ namespace ProductSellStore.ViewModel.ItemsViewModels
         public string PhotoUrl { get; set; }
 
         [Required]
-        public int CategoreId { get; set; }
+        public int Category { get; set; }
 
         public ICollection<Category> Categorys { get; set; } = null!;
 

@@ -86,7 +86,7 @@ namespace ProductSellStore.Test
             item.Description = "good pc";
 
            item.PhotoUrl = "https://pcbuild.bg/assets/products/000/000/247/000000247696--laptop-lenovo-thinkpad-14-g1-20u2s7cy00.jpg";
-            item.CategoreId = 1;
+            item.Category = 1;
             int count = 0;
             Task.Run(async () =>
                 {

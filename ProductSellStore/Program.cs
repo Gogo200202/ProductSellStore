@@ -22,7 +22,7 @@ namespace ProductSellStore
             builder.Services.AddDbContext<ProductSellStoreDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(
                     options => options.SignIn.RequireConfirmedAccount = false)
